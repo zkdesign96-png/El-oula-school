@@ -4,312 +4,268 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>EL OULA SCHOOL - منصة بطاقات الطلاب</title>
-  <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700;800&family=Poppins:wght@500;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700;800&family=Poppins:wght@500;700;800&display=swap" rel="stylesheet">
   <style>
     :root {
-      --gradient-bg: linear-gradient(135deg, #a855f7 0%, #ec4899 50%, #06b6d4 100%);
-      --glass-bg: rgba(255, 255, 255, 0.25);
-      --glass-border: rgba(255, 255, 255, 0.4);
-      --glass-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.25);
+      --primary-glow: #8b5cf6;
+      --secondary-glow: #ec4899;
+      --glass-bg: rgba(15, 23, 42, 0.65);
+      --glass-border: rgba(255, 255, 255, 0.15);
+      --glass-card: rgba(255, 255, 255, 0.1);
     }
 
     * { box-sizing: border-box; margin: 0; padding: 0; font-family: 'Cairo', sans-serif; }
 
     body {
-      background: var(--gradient-bg);
+      background: #0f172a;
       min-height: 100vh;
-      color: #1e293b;
-      padding-bottom: 40px;
+      color: #f8fafc;
+      padding-bottom: 50px;
+      position: relative;
+      overflow-x: hidden;
     }
 
-    /* هيدر الموقع */
+    /* خلفية متدرجة ذات مؤثرات إضاءة زجاجية (Glow effects) */
+    body::before, body::after {
+      content: '';
+      position: absolute;
+      width: 400px;
+      height: 400px;
+      border-radius: 50%;
+      filter: blur(120px);
+      z-index: -1;
+    }
+    body::before { background: var(--primary-glow); top: -50px; left: -50px; }
+    body::after { background: var(--secondary-glow); bottom: 50px; right: -50px; }
+
+    /* الهيدر الزجاجي الاحترافي */
     header {
-      background: rgba(255, 255, 255, 0.2);
-      backdrop-filter: blur(12px);
-      -webkit-backdrop-filter: blur(12px);
+      background: rgba(15, 23, 42, 0.75);
+      backdrop-filter: blur(20px);
+      -webkit-backdrop-filter: blur(20px);
       border-bottom: 1px solid var(--glass-border);
-      padding: 0.8rem 2rem;
+      padding: 1rem 3rem;
       display: flex;
       align-items: center;
       justify-content: space-between;
-      color: white;
+      box-shadow: 0 4px 30px rgba(0, 0, 0, 0.3);
     }
 
-    .brand-container { display: flex; align-items: center; gap: 15px; }
-    .brand-logo-svg { width: 50px; height: 50px; background: #ffffff; border-radius: 10px; padding: 5px; box-shadow: 0 2px 8px rgba(0,0,0,0.15); }
-    .brand-text { display: flex; flex-direction: column; }
-    .site-title { font-size: 1.4rem; font-weight: 800; line-height: 1.2; text-shadow: 0 2px 4px rgba(0,0,0,0.2); }
-    .site-subtitle { font-size: 0.8rem; opacity: 0.9; font-weight: 600; }
+    .brand-container { display: flex; align-items: center; gap: 18px; }
+    .brand-logo { 
+      width: 55px; 
+      height: 55px; 
+      object-fit: contain; 
+      background: #fff; 
+      border-radius: 12px; 
+      padding: 4px;
+      box-shadow: 0 0 15px rgba(236, 72, 153, 0.4);
+    }
+    .brand-text .site-title { font-size: 1.5rem; font-weight: 800; letter-spacing: 0.5px; background: linear-gradient(to right, #fff, #cbd5e1); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
+    .brand-text .site-subtitle { font-size: 0.8rem; color: #94a3b8; font-weight: 600; }
 
     .container {
-      max-width: 1300px;
-      margin: 30px auto;
+      max-width: 1250px;
+      margin: 40px auto;
       padding: 0 20px;
       display: grid;
-      grid-template-columns: 420px 1fr;
-      gap: 30px;
+      grid-template-columns: 400px 1fr;
+      gap: 35px;
     }
 
     @media (max-width: 992px) { .container { grid-template-columns: 1fr; } }
 
+    /* لوحة التحكم بالنوافذ الزجاجية */
     .glass-panel {
       background: var(--glass-bg);
-      backdrop-filter: blur(16px);
-      -webkit-backdrop-filter: blur(16px);
+      backdrop-filter: blur(20px);
+      -webkit-backdrop-filter: blur(20px);
       border: 1px solid var(--glass-border);
-      border-radius: 20px;
-      padding: 25px;
-      box-shadow: var(--glass-shadow);
-      color: #0f172a;
+      border-radius: 24px;
+      padding: 30px;
+      box-shadow: 0 20px 40px rgba(0, 0, 0, 0.4);
     }
 
     .section-title {
       font-size: 1.1rem;
       font-weight: 800;
       margin-bottom: 20px;
-      color: #ffffff;
-      text-shadow: 0 1px 3px rgba(0,0,0,0.3);
-      border-right: 4px solid #fff;
-      padding-right: 10px;
+      color: #38bdf8;
+      border-right: 4px solid #38bdf8;
+      padding-right: 12px;
+      display: flex;
+      align-items: center;
+      gap: 8px;
     }
 
-    .form-group { margin-bottom: 15px; }
-    .form-group label { display: block; font-size: 0.85rem; font-weight: 700; margin-bottom: 6px; color: #fff; }
+    .form-group { margin-bottom: 18px; }
+    .form-group label { display: block; font-size: 0.85rem; font-weight: 700; margin-bottom: 8px; color: #e2e8f0; }
     .form-group input {
       width: 100%;
-      padding: 10px 14px;
+      padding: 12px 16px;
       border: 1px solid var(--glass-border);
-      background: rgba(255, 255, 255, 0.85);
-      border-radius: 10px;
+      background: rgba(30, 41, 59, 0.7);
+      border-radius: 12px;
       font-size: 0.9rem;
+      color: #fff;
       outline: none;
-      transition: all 0.3s;
+      transition: all 0.3s ease;
     }
-    .form-group input:focus { background: #ffffff; border-color: #3b82f6; }
+    .form-group input:focus { 
+      border-color: #38bdf8; 
+      box-shadow: 0 0 12px rgba(56, 189, 248, 0.3);
+      background: rgba(30, 41, 59, 0.9);
+    }
 
     .file-dropzone {
-      border: 2px dashed rgba(255, 255, 255, 0.8);
-      background: rgba(255, 255, 255, 0.2);
-      border-radius: 12px;
-      padding: 15px;
+      border: 2px dashed #a855f7;
+      background: rgba(168, 85, 247, 0.1);
+      border-radius: 14px;
+      padding: 20px;
       text-align: center;
       cursor: pointer;
-      margin-bottom: 20px;
-      color: white;
+      margin-bottom: 25px;
+      color: #e2e8f0;
       font-weight: 600;
-      transition: 0.3s;
+      transition: all 0.3s;
     }
-    .file-dropzone:hover { background: rgba(255, 255, 255, 0.35); }
+    .file-dropzone:hover { 
+      background: rgba(168, 85, 247, 0.2); 
+      border-color: #ec4899;
+      box-shadow: 0 0 15px rgba(236, 72, 153, 0.2);
+    }
 
-    /* معاينة البطاقة */
+    /* منطقة معاينة البطاقة مع تصميم الأبعاد الفعلي */
     .cards-preview-area {
       display: flex;
       flex-direction: column;
-      gap: 30px;
+      gap: 35px;
       align-items: center;
     }
 
-    .id-card {
-      width: 500px;
-      height: 315px;
-      border-radius: 16px;
+    .card-wrapper {
       position: relative;
-      background: #ffffff;
-      box-shadow: 0 15px 35px rgba(0,0,0,0.3);
+      width: 520px;
+      height: 325px;
+      border-radius: 18px;
       overflow: hidden;
-      font-family: 'Poppins', 'Cairo', sans-serif;
-      border: 1px solid rgba(255,255,255,0.6);
-      background-image: radial-gradient(circle at 10% 90%, rgba(236,72,153,0.15), transparent 40%),
-                        radial-gradient(circle at 90% 10%, rgba(6,182,212,0.15), transparent 40%);
+      box-shadow: 0 20px 50px rgba(0,0,0,0.6);
+      border: 1px solid rgba(255,255,255,0.2);
+      transition: transform 0.3s ease;
     }
+    .card-wrapper:hover { transform: translateY(-5px); }
 
     /* الوجه الأمامي */
-    .card-front .card-logo-area { position: absolute; top: 10px; left: 15px; width: 110px; text-align: center; }
-
-    .card-front .card-title {
-      position: absolute;
-      top: 15px;
-      right: 20px;
-      font-size: 20px;
-      font-weight: 800;
-      color: #000;
+    .card-front {
+      width: 100%;
+      height: 100%;
+      position: relative;
+      background-size: cover;
+      background-position: center;
     }
 
-    .student-photo-box {
+    .student-photo-overlay {
       position: absolute;
-      top: 105px;
-      left: 20px;
-      width: 110px;
-      height: 130px;
-      border-radius: 6px;
-      border: 1px solid #ccc;
-      background: #e2e8f0;
-      overflow: hidden;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-    }
-    .student-photo-box img { width: 100%; height: 100%; object-fit: cover; }
-
-    .barcode {
-      position: absolute;
-      bottom: 12px;
-      left: 18px;
-      width: 120px;
-      height: 35px;
-      background: repeating-linear-gradient(90deg, #000 0, #000 2px, #fff 2px, #fff 4px);
+      top: 136px;
+      left: 31px;
+      width: 118px;
+      height: 126px;
+      object-fit: cover;
+      border-radius: 4px;
     }
 
-    .fields-container {
+    .field-overlay {
       position: absolute;
-      top: 65px;
-      right: 120px;
-      width: 230px;
-      display: flex;
-      flex-direction: column;
-      gap: 7px;
-    }
-
-    .field-box {
-      border: 1.5px solid #000;
-      border-radius: 12px;
-      padding: 3px 10px;
-      font-size: 10.5px;
       font-weight: 700;
-      background: rgba(255,255,255,0.85);
+      color: #000;
+      font-size: 13px;
+      font-family: 'Poppins', sans-serif;
+      white-space: nowrap;
     }
-    .field-box span { font-weight: 600; color: #333; margin-left: 5px; }
 
-    .chip-icon {
-      position: absolute;
-      top: 165px;
-      right: 30px;
-      width: 48px;
-      height: 38px;
-      background: #eab308;
-      border-radius: 6px;
-      border: 1px solid #ca8a04;
-    }
+    /* تموضع النصوص على تصميم البطاقة الأصلي */
+    #valName { top: 128px; left: 240px; }
+    #valLevel { top: 168px; left: 240px; }
+    #valId { top: 209px; left: 240px; }
+    #valExpire { top: 252px; left: 240px; }
 
     /* الظهر */
     .card-back {
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: space-between;
-      padding: 20px;
-      text-align: center;
-    }
-
-    .contact-info {
       width: 100%;
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 10px;
-      font-size: 10px;
-      font-weight: 700;
-      direction: ltr;
-      text-align: left;
+      height: 100%;
+      background-size: cover;
+      background-position: center;
     }
   </style>
 </head>
 <body>
 
-  <!-- الهيدر مع اسم المنصة وشعار مدمج -->
   <header>
     <div class="brand-container">
-      <div class="brand-logo-svg">
-        <svg viewBox="0 0 100 100" width="100%" height="100%">
-          <path d="M20 70 C30 50, 70 50, 80 70 M50 20 L50 60 M30 35 L70 35" stroke="#a855f7" stroke-width="8" fill="none" stroke-linecap="round"/>
-        </svg>
-      </div>
       <div class="brand-text">
         <div class="site-title">EL OULA SCHOOL</div>
-        <div class="site-subtitle">ECOLE DE LANGUES ET DE FORMATION</div>
+        <div class="site-subtitle">ECOLE DE LANGUES ET DE FORMATION - منصة بطاقات الطلاب الاحترافية</div>
       </div>
     </div>
   </header>
 
   <div class="container">
     
-    <!-- لوحة إدخال البيانات والرفع -->
+    <!-- لوحة التحكم زجاجية -->
     <div class="glass-panel">
-      <div class="section-title">رفع الملفات والبيانات</div>
+      <div class="section-title">📁 رفع البيانات الحجمية</div>
       <div class="file-dropzone" onclick="document.getElementById('bulkFile').click()">
-        📁 اضغط لرفع ملف (Excel / PDF / ZIP)
+        اضغط لرفع حزمة بيانات (Excel / PDF / ZIP)
         <input type="file" id="bulkFile" hidden accept=".xlsx, .xls, .csv, .pdf, .zip">
       </div>
 
-      <div class="section-title">إدخال بيانات بطاقة الطالب</div>
+      <div class="section-title">✏️ بيانات الطالب الحالية</div>
       
       <div class="form-group">
-        <label>الاسم (NAME)</label>
-        <input type="text" id="inputName" placeholder="مثال: BENALI MOHAMED" oninput="updateCard()">
+        <label>اسم الطالب (NAME)</label>
+        <input type="text" id="inputName" placeholder="MOHAMED BENALI" oninput="updateCard()">
       </div>
 
       <div class="form-group">
         <label>المستوى الدراسي (ACADEMIC LEVEL)</label>
-        <input type="text" id="inputLevel" placeholder="مثال: 2ND YEAR HIGH SCHOOL" oninput="updateCard()">
+        <input type="text" id="inputLevel" placeholder="2ND YEAR HIGH SCHOOL" oninput="updateCard()">
       </div>
 
       <div class="form-group">
-        <label>الرقم (ID)</label>
-        <input type="text" id="inputId" placeholder="مثال: 2026-889" oninput="updateCard()">
+        <label>الرقم التعريفي (ID)</label>
+        <input type="text" id="inputId" placeholder="2026-0089" oninput="updateCard()">
       </div>
 
       <div class="form-group">
         <label>تاريخ الانتهاء (EXPIRE DATE)</label>
-        <input type="text" id="inputExpire" placeholder="مثال: 06/2027" oninput="updateCard()">
+        <input type="text" id="inputExpire" placeholder="06 / 2027" oninput="updateCard()">
       </div>
 
       <div class="form-group">
-        <label>صورة الطالب</label>
+        <label>صورة الطالب الشخصية</label>
         <input type="file" id="inputPhoto" accept="image/*" onchange="previewPhoto(event)">
       </div>
     </div>
 
-    <!-- المعاينة الحية لبطاقة الطالب -->
+    <!-- المعاينة الحية المباشرة -->
     <div class="cards-preview-area">
       
-      <!-- الوجه الأمامي -->
-      <div class="id-card card-front">
-        <div class="card-logo-area">
-          <strong style="display:block; font-size:16px; color:#b45309; margin-bottom:-5px;">العلا</strong>
-          <span style="font-size:9px; font-weight:800; color:#000;">EL OULA SCHOOL</span>
+      <!-- الوجه الأمامي للبطاقة -->
+      <div class="card-wrapper">
+        <div class="card-front" id="cardFrontBg">
+          <img id="cardPhoto" class="student-photo-overlay" src="" style="display:none;">
+          
+          <!-- القيم النصية الظاهرة في الخانات -->
+          <div class="field-overlay" id="valName">---</div>
+          <div class="field-overlay" id="valLevel">---</div>
+          <div class="field-overlay" id="valId">---</div>
+          <div class="field-overlay" id="valExpire">---</div>
         </div>
-
-        <div class="card-title">STUDENT ID CARD</div>
-
-        <div class="student-photo-box">
-          <img id="cardPhoto" src="" alt="" style="display:none;">
-          <span id="photoPlaceholder" style="font-size:10px; color:#64748b;">اختر صورة</span>
-        </div>
-
-        <div class="fields-container">
-          <div class="field-box">NAME : <span id="cardName">---</span></div>
-          <div class="field-box">ACADEMIC LEVEL : <span id="cardLevel">---</span></div>
-          <div class="field-box">ID : <span id="cardId">---</span></div>
-          <div class="field-box">EXPIRE DATE : <span id="cardExpire">---</span></div>
-        </div>
-
-        <div class="chip-icon"></div>
-        <div class="barcode"></div>
       </div>
 
-      <!-- الظهر -->
-      <div class="id-card card-back">
-        <div style="text-align:center; margin-top:10px;">
-          <h2 style="color:#b45309; font-size:28px; line-height:1;">العلا</h2>
-          <strong style="font-size:14px; color:#000;">EL OULA SCHOOL</strong>
-          <p style="font-size:8px; color:#666;">ECOLE DE LANGUES ET DE FORMATION</p>
-        </div>
-
-        <div class="contact-info">
-          <div>🌐 El oula school</div>
-          <div>✉️ hello@reallygreatsite.com</div>
-          <div>📞 +213 792 63 89 20</div>
-          <div>📍 Oued el Alle, Algeria</div>
-        </div>
+      <!-- الظهر للبطاقة -->
+      <div class="card-wrapper">
+        <div class="card-back" id="cardBackBg"></div>
       </div>
 
     </div>
@@ -317,11 +273,15 @@
   </div>
 
   <script>
+    // ربط خلفية البطاقة الوجه والظهر مباشرة بكود الصفحة
+    document.getElementById('cardFrontBg').style.backgroundImage = "url('1_2.png')";
+    document.getElementById('cardBackBg').style.backgroundImage = "url('2_2.png')";
+
     function updateCard() {
-      document.getElementById('cardName').innerText = document.getElementById('inputName').value || '---';
-      document.getElementById('cardLevel').innerText = document.getElementById('inputLevel').value || '---';
-      document.getElementById('cardId').innerText = document.getElementById('inputId').value || '---';
-      document.getElementById('cardExpire').innerText = document.getElementById('inputExpire').value || '---';
+      document.getElementById('valName').innerText = document.getElementById('inputName').value || '---';
+      document.getElementById('valLevel').innerText = document.getElementById('inputLevel').value || '---';
+      document.getElementById('valId').innerText = document.getElementById('inputId').value || '---';
+      document.getElementById('valExpire').innerText = document.getElementById('inputExpire').value || '---';
     }
 
     function previewPhoto(event) {
@@ -332,7 +292,6 @@
           const img = document.getElementById('cardPhoto');
           img.src = e.target.result;
           img.style.display = 'block';
-          document.getElementById('photoPlaceholder').style.display = 'none';
         }
         reader.readAsDataURL(file);
       }
