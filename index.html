@@ -65,7 +65,6 @@
       100% { transform: translate(80px, 60px) scale(1.2); opacity: 0.5; }
     }
 
-    /* 🎯 توسيط اللوجو واسم الموقع بالمليمتر */
     header {
       width: 100%;
       padding: 2.5rem 1rem 1.5rem 1rem;
@@ -174,7 +173,8 @@
       outline: none;
       transition: all 0.3s;
     }
-    .form-group input:focus {
+    .form-group select option { background: #0f172a; color: #fff; }
+    .form-group input:focus, .form-group select:focus {
       border-color: var(--primary-cyan);
       box-shadow: 0 0 15px rgba(6, 182, 212, 0.4);
     }
@@ -224,9 +224,7 @@
     .btn-batch { background: linear-gradient(135deg, rgba(16, 185, 129, 0.85), rgba(6, 182, 212, 0.85)); }
     .btn-print-batch { background: linear-gradient(135deg, rgba(236, 72, 153, 0.85), rgba(139, 92, 246, 0.85)); }
     .btn-print-front { background: linear-gradient(135deg, rgba(6, 182, 212, 0.75), rgba(139, 92, 246, 0.75)); }
-    .btn-print-back { background: linear-gradient(135deg, rgba(139, 92, 246, 0.75), rgba(236, 72, 153, 0.75)); }
     .btn-download { background: linear-gradient(135deg, rgba(16, 185, 129, 0.75), rgba(6, 182, 212, 0.75)); }
-    .btn-whatsapp { background: linear-gradient(135deg, rgba(37, 211, 102, 0.75), rgba(16, 185, 129, 0.75)); }
     .btn-clear { background: rgba(239, 68, 68, 0.3); border-color: rgba(239, 68, 68, 0.5); }
 
     .btn-action:hover {
@@ -277,19 +275,20 @@
 
     .level-tabs {
       display: flex;
-      gap: 8px;
+      gap: 6px;
       overflow-x: auto;
+      padding-bottom: 4px;
     }
 
     .tab-btn {
       background: rgba(255, 255, 255, 0.08);
       border: 1px solid var(--glass-border);
       color: #cbd5e1;
-      padding: 8px 16px;
+      padding: 6px 12px;
       border-radius: 10px;
       cursor: pointer;
       font-weight: 700;
-      font-size: 0.85rem;
+      font-size: 0.8rem;
       transition: all 0.3s;
       white-space: nowrap;
     }
@@ -301,7 +300,6 @@
       font-weight: 800;
     }
 
-    /* قاعدة البيانات المدمجة */
     .database-panel {
       background: var(--glass-bg);
       backdrop-filter: blur(16px);
@@ -351,6 +349,39 @@
       color: #e2e8f0;
     }
 
+    .btn-table-edit {
+      background: rgba(6, 182, 212, 0.2);
+      border: 1px solid var(--primary-cyan);
+      color: #38bdf8;
+      padding: 4px 10px;
+      border-radius: 6px;
+      cursor: pointer;
+      font-weight: 700;
+      font-size: 0.75rem;
+      transition: all 0.2s;
+    }
+    .btn-table-edit:hover {
+      background: var(--primary-cyan);
+      color: #000;
+    }
+
+    .btn-table-delete {
+      background: rgba(239, 68, 68, 0.2);
+      border: 1px solid #ef4444;
+      color: #f87171;
+      padding: 4px 10px;
+      border-radius: 6px;
+      cursor: pointer;
+      font-weight: 700;
+      font-size: 0.75rem;
+      margin-right: 4px;
+      transition: all 0.2s;
+    }
+    .btn-table-delete:hover {
+      background: #ef4444;
+      color: #fff;
+    }
+
     .status-tag {
       display: inline-block;
       padding: 2px 8px;
@@ -365,16 +396,38 @@
     .cards-grid {
       display: flex;
       flex-direction: column;
-      gap: 30px;
+      gap: 40px;
       align-items: center;
     }
 
     .card-box {
       display: flex;
-      flex-direction: column;
+      flex-direction: row;
+      flex-wrap: wrap;
+      justify-content: center;
       align-items: center;
-      gap: 10px;
+      gap: 20px;
       position: relative;
+      background: rgba(255,255,255,0.02);
+      padding: 20px;
+      border-radius: 20px;
+      border: 1px solid var(--glass-border);
+      width: 100%;
+    }
+
+    .card-header-bar {
+      width: 100%;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding-bottom: 10px;
+      border-bottom: 1px solid rgba(255,255,255,0.1);
+    }
+
+    .card-title-side {
+      font-weight: 800;
+      color: var(--primary-cyan);
+      font-size: 0.95rem;
     }
 
     .card-wrapper {
@@ -420,7 +473,7 @@
     .valId     { top: 201px; left: 245px; } 
     .valExpire { top: 258px; left: 245px; }
 
-    /* 🖨️ الطباعة المجمعة الدقيقة */
+    /* 🖨️ الطباعة المجمعة للوجه والظهر */
     @media print {
       * { -webkit-print-color-adjust: exact !important; print-color-adjust: exact !important; }
       body { background: white !important; padding: 0 !important; color: black !important; }
@@ -440,6 +493,8 @@
         margin-bottom: 20px;
         display: flex !important;
         justify-content: center;
+        border: none !important;
+        background: transparent !important;
       }
 
       .card-wrapper {
@@ -447,7 +502,7 @@
         border: 1px solid #ccc !important;
       }
 
-      header, .control-panel, .search-filter-bar, .database-panel, .bg-pattern, .glowing-orb { display: none !important; }
+      header, .control-panel, .search-filter-bar, .database-panel, .bg-pattern, .glowing-orb, .card-header-bar { display: none !important; }
     }
   </style>
 </head>
@@ -462,7 +517,7 @@
     <div class="header-content">
       <img src="Untitled design_2.png" alt="Logo" class="header-logo" onerror="this.src='https://via.placeholder.com/140?text=EL+OULA'">
       <div class="site-title">EL OULA SCHOOL</div>
-      <div class="site-subtitle">توليد وطباعة البطاقات الذكية تلقائياً من الملفات (PDF / Excel)</div>
+      <div class="site-subtitle">إدارة وتعديل وطباعة البطاقات الذكية الوجه والظهر بكل سهولة</div>
     </div>
   </header>
 
@@ -480,48 +535,69 @@
           📂 اضغط هنا لرفع ملف Excel (.xlsx/.csv) أو PDF
           <input type="file" id="batchFileInput" accept=".xlsx, .xls, .csv, .pdf" style="display:none;" onchange="handleBatchFileUpload(event)">
         </label>
-        <p>سيتم استخراج الأسماء، الأرقام التعريفية، والمستويات وصناعة البطاقات دفعة واحدة!</p>
+        <p>سيتم استخراج الأسماء والأرقام والمستويات وتنسيق الوجه والظهر تلقائياً!</p>
       </div>
 
       <div class="panel-title">
-        <span>✏️ إضافة / تعديل بطاقة واحدة</span>
+        <span id="formModeTitle">✏️ إضافة / تعديل بطاقة طالب</span>
       </div>
+
+      <!-- المعرف الخفي للبطاقة الجاري تعديلها -->
+      <input type="hidden" id="editingId" value="">
 
       <div class="form-group">
         <label>الاسم الكامل</label>
-        <input type="text" id="inputName" value="MOHAMED BENALI" oninput="updateSingleCard()">
+        <input type="text" id="inputName" value="MOHAMED BENALI" oninput="livePreviewSingleCard()">
       </div>
       
       <div class="form-group">
         <label>المستوى الدراسي</label>
-        <select id="inputLevel" onchange="updateSingleCard()">
-          <option value="1ST YEAR HIGH SCHOOL">1ST YEAR HIGH SCHOOL (السنة الأولى)</option>
-          <option value="2ND YEAR HIGH SCHOOL">2ND YEAR HIGH SCHOOL (السنة الثانية)</option>
-          <option value="3RD YEAR HIGH SCHOOL">3RD YEAR HIGH SCHOOL (السنة الثالثة)</option>
+        <select id="inputLevel" onchange="livePreviewSingleCard()">
+          <!-- 🏫 الطور الابتدائي -->
+          <optgroup label="الطور الابتدائي (PRIMARY SCHOOL)">
+            <option value="1ST PRIMARY SCHOOL (1AP)">1AP - السنة الأولى ابتدائي</option>
+            <option value="2ND PRIMARY SCHOOL (2AP)">2AP - السنة الثانية ابتدائي</option>
+            <option value="3RD PRIMARY SCHOOL (3AP)">3AP - السنة الثالثة ابتدائي</option>
+            <option value="4TH PRIMARY SCHOOL (4AP)">4AP - السنة الرابعة ابتدائي</option>
+            <option value="5TH PRIMARY SCHOOL (5AP)">5AP - السنة الخامسة ابتدائي</option>
+          </optgroup>
+          <!-- 🏫 الطور المتوسط -->
+          <optgroup label="الطور المتوسط (MIDDLE SCHOOL)">
+            <option value="1ST MIDDLE SCHOOL (1AM)">1AM - السنة الأولى متوسط</option>
+            <option value="2ND MIDDLE SCHOOL (2AM)">2AM - السنة الثانية متوسط</option>
+            <option value="3RD MIDDLE SCHOOL (3AM)">3RD MIDDLE SCHOOL (3AM) - السنة الثالثة متوسط</option>
+            <option value="4TH MIDDLE SCHOOL (4AM)">4AM - السنة الرابعة متوسط</option>
+          </optgroup>
+          <!-- 🏫 الطور الثانوي -->
+          <optgroup label="الطور الثانوي (HIGH SCHOOL)">
+            <option value="1ST HIGH SCHOOL (1AS)" selected>1AS - السنة الأولى ثانوي</option>
+            <option value="2ND HIGH SCHOOL (2AS)">2AS - السنة الثانية ثانوي</option>
+            <option value="3RD HIGH SCHOOL (3AS)">3AS - السنة الثالثة ثانوي</option>
+          </optgroup>
         </select>
       </div>
 
       <div class="form-group">
         <label>الرقم التعريفي / الباركود (ID / Barcode)</label>
-        <input type="text" id="inputId" value="2026-0089" oninput="updateSingleCard()">
+        <input type="text" id="inputId" value="2026-0089" oninput="livePreviewSingleCard()">
       </div>
 
       <div class="form-group">
         <label>تاريخ الانتهاء</label>
-        <input type="text" id="inputExpire" value="06 / 2027" oninput="updateSingleCard()">
+        <input type="text" id="inputExpire" value="06 / 2027" oninput="livePreviewSingleCard()">
       </div>
 
       <div class="form-group">
-        <label>الصورة الشخصية</label>
+        <label>الصورة الشخصية (تحديث / اختيار صورة)</label>
         <input type="file" id="inputPhoto" accept="image/*" onchange="previewPhoto(event)">
       </div>
 
       <div class="action-section">
         <button class="btn-action btn-batch" onclick="saveCurrentToDb()">
-          <span>💾</span> حفظ البطاقة في قاعدة البيانات
+          <span id="btnSaveText">💾 حفظ البطاقة / التعديلات</span>
         </button>
         <button class="btn-action btn-print-batch" onclick="printAllBatch()">
-          <span>🖨️</span> طباعة كافة البطاقات المنسقة دفعة واحدة
+          <span>🖨️</span> طباعة كل البطاقات (وجه + ظهر)
         </button>
         <button class="btn-action btn-print-front" onclick="window.print()">
           <span>🖨️</span> طباعة المعاينة الحالية
@@ -530,7 +606,7 @@
           <span>📥</span> تنزيل البطاقة الحالية (PNG)
         </button>
         <button class="btn-action btn-clear" onclick="clearDatabase()">
-          <span>🗑️</span> مسح قاعدة البيانات والبطاقات
+          <span>🗑️</span> مسح كافة البيانات والبطاقات
         </button>
       </div>
 
@@ -544,16 +620,16 @@
         </div>
         <div class="level-tabs">
           <button class="tab-btn active" onclick="filterLevel('ALL', this)">الكل</button>
-          <button class="tab-btn" onclick="filterLevel('1ST YEAR', this)">السنة الأولى</button>
-          <button class="tab-btn" onclick="filterLevel('2ND YEAR', this)">السنة الثانية</button>
-          <button class="tab-btn" onclick="filterLevel('3RD YEAR', this)">السنة الثالثة</button>
+          <button class="tab-btn" onclick="filterLevel('PRIMARY', this)">الابتدائي</button>
+          <button class="tab-btn" onclick="filterLevel('MIDDLE', this)">المتوسط</button>
+          <button class="tab-btn" onclick="filterLevel('HIGH', this)">الثانوي</button>
         </div>
       </div>
 
       <!-- 🗄️ قاعدة البيانات المدمجة للطلاب -->
       <div class="database-panel">
         <div class="db-header">
-          <div class="db-title">📊 قاعدة البيانات المسجلة والبطاقات المطبوعة</div>
+          <div class="db-title">📊 قاعدة البيانات المسجلة وخيارات التعديل المباشر</div>
           <div id="dbCount" style="font-size:0.85rem; color:#94a3b8;">إجمالي المسجلين: 0</div>
         </div>
         <div class="db-table-container">
@@ -566,6 +642,7 @@
                 <th>المستوى الدراسي</th>
                 <th>تاريخ الانتهاء</th>
                 <th>الحالة</th>
+                <th>الإجراءات والتعديل</th>
               </tr>
             </thead>
             <tbody id="dbTableBody">
@@ -575,9 +652,9 @@
         </div>
       </div>
 
-      <!-- شبكة عرض البطاقات المولدّة تلقائياً -->
+      <!-- شبكة عرض البطاقات المولدّة تلقائياً (الوجه والظهر) -->
       <div class="cards-grid" id="cardsGrid">
-        <!-- يتم توليد البطاقات هنا -->
+        <!-- يتم توليد البطاقات والظهر هنا -->
       </div>
 
     </div>
@@ -596,10 +673,9 @@
       if (savedDb) {
         database = JSON.parse(savedDb);
       } else {
-        // افتراضي
         database = [{
           name: "MOHAMED BENALI",
-          level: "1ST YEAR HIGH SCHOOL",
+          level: "1ST HIGH SCHOOL (1AS)",
           id: "2026-0089",
           expire: "06 / 2027",
           printed: false,
@@ -623,7 +699,7 @@
 
       let count = 0;
       database.forEach((item, index) => {
-        const matchesLevel = selectedLevelFilter === 'ALL' || item.level.includes(selectedLevelFilter);
+        const matchesLevel = checkLevelMatch(item.level, selectedLevelFilter);
         const matchesSearch = item.name.toLowerCase().includes(searchVal) || item.id.toLowerCase().includes(searchVal);
 
         if (matchesLevel && matchesSearch) {
@@ -636,12 +712,24 @@
             <td>${item.level}</td>
             <td>${item.expire}</td>
             <td><span class="status-tag ${item.printed ? 'status-printed' : 'status-saved'}">${item.printed ? 'مطبوعة ✔' : 'مسجلة 💾'}</span></td>
+            <td>
+              <button class="btn-table-edit" onclick="editStudent('${item.id}')">✏️ تعديل</button>
+              <button class="btn-table-delete" onclick="deleteStudent('${item.id}')">🗑️ حذف</button>
+            </td>
           `;
           tbody.appendChild(tr);
         }
       });
 
-      document.getElementById('dbCount').innerText = `إجمالي المسجلين المفدين: ${count} من أصل ${database.length}`;
+      document.getElementById('dbCount').innerText = `إجمالي المسجلين: ${count} من أصل ${database.length}`;
+    }
+
+    function checkLevelMatch(itemLevel, filterKey) {
+      if (filterKey === 'ALL') return true;
+      if (filterKey === 'PRIMARY' && (itemLevel.includes('PRIMARY') || itemLevel.includes('AP'))) return true;
+      if (filterKey === 'MIDDLE' && (itemLevel.includes('MIDDLE') || itemLevel.includes('AM'))) return true;
+      if (filterKey === 'HIGH' && (itemLevel.includes('HIGH') || itemLevel.includes('AS'))) return true;
+      return itemLevel.includes(filterKey);
     }
 
     function renderCardsGrid() {
@@ -650,21 +738,35 @@
       grid.innerHTML = '';
 
       database.forEach((item, idx) => {
-        const matchesLevel = selectedLevelFilter === 'ALL' || item.level.includes(selectedLevelFilter);
+        const matchesLevel = checkLevelMatch(item.level, selectedLevelFilter);
         const matchesSearch = item.name.toLowerCase().includes(searchVal) || item.id.toLowerCase().includes(searchVal);
 
         if (matchesLevel && matchesSearch) {
           const cardBox = document.createElement('div');
           cardBox.className = 'card-box';
           cardBox.dataset.level = item.level;
+          
           cardBox.innerHTML = `
-            <div class="card-wrapper" id="card-${idx}">
-              <img src="1_2.png" class="card-template-img" alt="Card Front" onerror="this.src='https://via.placeholder.com/500x315?text=Card+Front+Template'">
+            <div class="card-header-bar">
+              <span class="card-title-side">بطاقة الطالب رقم #${idx + 1} (${item.name})</span>
+              <div>
+                <button class="btn-table-edit" onclick="editStudent('${item.id}')">✏️ تعديل هذه البطاقة</button>
+              </div>
+            </div>
+            
+            <!-- الوجه الأمامي للبطاقة -->
+            <div class="card-wrapper" id="card-front-${idx}">
+              <img src="1_2.png" class="card-template-img" alt="Card Front" onerror="this.src='https://via.placeholder.com/500x315/0f172a/06b6d4?text=Card+Front+Template'">
               ${item.photo ? `<img class="student-photo" src="${item.photo}">` : `<img class="student-photo" style="display:none;">`}
               <div class="field-overlay valName">${item.name}</div>
               <div class="field-overlay valLevel">${item.level}</div>
               <div class="field-overlay valId">${item.id}</div>
               <div class="field-overlay valExpire">${item.expire}</div>
+            </div>
+
+            <!-- ظهر البطاقة -->
+            <div class="card-wrapper" id="card-back-${idx}">
+              <img src="2_1.png" class="card-template-img" alt="Card Back" onerror="this.src='https://via.placeholder.com/500x315/1e293b/8b5cf6?text=Card+Back+Template'">
             </div>
           `;
           grid.appendChild(cardBox);
@@ -672,19 +774,46 @@
       });
     }
 
-    function updateSingleCard() {
-      const name = document.getElementById('inputName').value.toUpperCase() || 'MOHAMED BENALI';
-      const level = document.getElementById('inputLevel').value;
-      const id = document.getElementById('inputId').value || '2026-0089';
-      const expire = document.getElementById('inputExpire').value || '06 / 2027';
+    /* ✏️ وظيفة تعديل الطالب المسجل وتعبئة كافة معلوماته في نموذج الإدخال */
+    function editStudent(studentId) {
+      const student = database.find(s => s.id === studentId);
+      if (!student) return;
 
-      if (database.length > 0) {
-        database[0].name = name;
-        database[0].level = level;
-        database[0].id = id;
-        database[0].expire = expire;
-        if (currentPhotoBase64) database[0].photo = currentPhotoBase64;
+      document.getElementById('editingId').value = student.id;
+      document.getElementById('inputName').value = student.name;
+      document.getElementById('inputLevel').value = student.level;
+      document.getElementById('inputId').value = student.id;
+      document.getElementById('inputExpire').value = student.expire;
+      currentPhotoBase64 = student.photo || '';
+
+      document.getElementById('formModeTitle').innerText = `✏️ تعديل بطاقة: ${student.name}`;
+      document.getElementById('btnSaveText').innerText = `💾 حفظ تعديلات البطاقة`;
+
+      // التمرير إلى أعلى النموذج بسلاسة
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    }
+
+    /* 🗑️ حذف طالب محدد */
+    function deleteStudent(studentId) {
+      if (confirm(`هل أنت تأكد من حذف البطاقة ذات الرقم التعريفي ${studentId}؟`)) {
+        database = database.filter(s => s.id !== studentId);
         saveDatabase();
+      }
+    }
+
+    function livePreviewSingleCard() {
+      const editingId = document.getElementById('editingId').value;
+      if (editingId) {
+        const studentIndex = database.findIndex(s => s.id === editingId);
+        if (studentIndex >= 0) {
+          database[studentIndex].name = document.getElementById('inputName').value.toUpperCase();
+          database[studentIndex].level = document.getElementById('inputLevel').value;
+          database[studentIndex].id = document.getElementById('inputId').value;
+          database[studentIndex].expire = document.getElementById('inputExpire').value;
+          if (currentPhotoBase64) database[studentIndex].photo = currentPhotoBase64;
+          renderDatabaseTable();
+          renderCardsGrid();
+        }
       }
     }
 
@@ -694,30 +823,52 @@
         const reader = new FileReader();
         reader.onload = function(e) {
           currentPhotoBase64 = e.target.result;
-          updateSingleCard();
+          livePreviewSingleCard();
         };
         reader.readAsDataURL(file);
       }
     }
 
     function saveCurrentToDb() {
+      const editingId = document.getElementById('editingId').value;
       const name = document.getElementById('inputName').value.toUpperCase();
       const level = document.getElementById('inputLevel').value;
       const id = document.getElementById('inputId').value;
       const expire = document.getElementById('inputExpire').value;
 
       if (!name || !id) {
-        alert('يرجى ملء كافة البيانات الرئيسية قبل الحفظ');
+        alert('يرجى ملء الاسم والرقم التعريفي');
         return;
       }
 
-      const existingIndex = database.findIndex(item => item.id === id);
-      if (existingIndex >= 0) {
-        database[existingIndex] = { name, level, id, expire, photo: currentPhotoBase64 || database[existingIndex].photo, printed: false };
+      if (editingId) {
+        // تحديث سجل موجود
+        const index = database.findIndex(s => s.id === editingId);
+        if (index >= 0) {
+          database[index] = {
+            name,
+            level,
+            id,
+            expire,
+            photo: currentPhotoBase64 || database[index].photo,
+            printed: database[index].printed
+          };
+        }
+        document.getElementById('editingId').value = '';
+        document.getElementById('formModeTitle').innerText = `✏️ إضافة / تعديل بطاقة طالب`;
+        document.getElementById('btnSaveText').innerText = `💾 حفظ البطاقة / التعديلات`;
       } else {
-        database.push({ name, level, id, expire, photo: currentPhotoBase64, printed: false });
+        // إضافة طالب جديد أو تحديث إن وجد الـ ID
+        const existingIndex = database.findIndex(item => item.id === id);
+        if (existingIndex >= 0) {
+          database[existingIndex] = { name, level, id, expire, photo: currentPhotoBase64 || database[existingIndex].photo, printed: false };
+        } else {
+          database.push({ name, level, id, expire, photo: currentPhotoBase64, printed: false });
+        }
       }
 
+      currentPhotoBase64 = '';
+      document.getElementById('inputPhoto').value = '';
       saveDatabase();
       showSaveNotice();
     }
@@ -728,7 +879,6 @@
       setTimeout(() => notice.classList.remove('active'), 2000);
     }
 
-    /* 📂 معالجة رفع ملفات Excel و PDF */
     function handleBatchFileUpload(event) {
       const file = event.target.files[0];
       if (!file) return;
@@ -752,18 +902,27 @@
         const firstSheet = workbook.Sheets[workbook.SheetNames[0]];
         const jsonData = XLSX.utils.sheet_to_json(firstSheet, { header: 1 });
 
-        // تخطي الهيدر والبدء في استخراج البيانات
         for (let i = 1; i < jsonData.length; i++) {
           const row = jsonData[i];
           if (row && row.length >= 2) {
             const name = String(row[0] || '').trim().toUpperCase();
             const id = String(row[1] || '').trim();
-            const rawLevel = String(row[2] || '1ST YEAR HIGH SCHOOL').trim().toUpperCase();
+            const rawLevel = String(row[2] || '1ST HIGH SCHOOL (1AS)').trim().toUpperCase();
             const expire = String(row[3] || '06 / 2027').trim();
 
-            let level = '1ST YEAR HIGH SCHOOL';
-            if (rawLevel.includes('2') || rawLevel.includes('ثانية')) level = '2ND YEAR HIGH SCHOOL';
-            if (rawLevel.includes('3') || rawLevel.includes('ثالثة')) level = '3RD YEAR HIGH SCHOOL';
+            let level = '1ST HIGH SCHOOL (1AS)';
+            if (rawLevel.includes('1AP') || rawLevel.includes('اولى ابتدائي')) level = '1ST PRIMARY SCHOOL (1AP)';
+            else if (rawLevel.includes('2AP') || rawLevel.includes('ثانية ابتدائي')) level = '2ND PRIMARY SCHOOL (2AP)';
+            else if (rawLevel.includes('3AP') || rawLevel.includes('ثالثة ابتدائي')) level = '3RD PRIMARY SCHOOL (3AP)';
+            else if (rawLevel.includes('4AP') || rawLevel.includes('رابعة ابتدائي')) level = '4TH PRIMARY SCHOOL (4AP)';
+            else if (rawLevel.includes('5AP') || rawLevel.includes('خامسة ابتدائي')) level = '5TH PRIMARY SCHOOL (5AP)';
+            else if (rawLevel.includes('1AM') || rawLevel.includes('اولى متوسط')) level = '1ST MIDDLE SCHOOL (1AM)';
+            else if (rawLevel.includes('2AM') || rawLevel.includes('ثانية متوسط')) level = '2ND MIDDLE SCHOOL (2AM)';
+            else if (rawLevel.includes('3AM') || rawLevel.includes('ثالثة متوسط')) level = '3RD MIDDLE SCHOOL (3AM)';
+            else if (rawLevel.includes('4AM') || rawLevel.includes('رابعة متوسط')) level = '4TH MIDDLE SCHOOL (4AM)';
+            else if (rawLevel.includes('1AS') || rawLevel.includes('اولى ثانوي')) level = '1ST HIGH SCHOOL (1AS)';
+            else if (rawLevel.includes('2AS') || rawLevel.includes('ثانية ثانوي')) level = '2ND HIGH SCHOOL (2AS)';
+            else if (rawLevel.includes('3AS') || rawLevel.includes('ثالثة ثانوي')) level = '3RD HIGH SCHOOL (3AS)';
 
             if (name && id) {
               const existingIndex = database.findIndex(item => item.id === id);
@@ -778,7 +937,7 @@
           }
         }
         saveDatabase();
-        alert('تم استخراج وقراءة ملف Excel وصناعة البطاقات وقاعدة البيانات بنجاح!');
+        alert('تم استخراج وقراءة ملف Excel وإنشاء الوجه والظهر لكافة الطلاب!');
       };
       reader.readAsArrayBuffer(file);
     }
@@ -794,7 +953,6 @@
             pdf.getPage(p).then(page => {
               page.getTextContent().then(textContent => {
                 const text = textContent.items.map(item => item.str).join(' ');
-                // خوارزمية استخراج بسيطة للأسماء والأرقام
                 const matches = text.match(/([A-Z\s]{4,20})\s+(\d{4}-\d{4}|\d{5,10})/g);
                 if (matches) {
                   matches.forEach(m => {
@@ -804,7 +962,7 @@
                       const name = parts.join(' ');
                       database.push({
                         name: name.toUpperCase(),
-                        level: '1ST YEAR HIGH SCHOOL',
+                        level: '1ST HIGH SCHOOL (1AS)',
                         id: id,
                         expire: '06 / 2027',
                         photo: '',
@@ -816,7 +974,7 @@
                 count++;
                 if (count === maxPages) {
                   saveDatabase();
-                  alert('تمت قراءة ملف PDF واستخراج بيانات الطلاب وإنشاء البطاقات وقاعدة البيانات!');
+                  alert('تمت قراءة ملف PDF واستخراج بيانات الطلاب بالكامل!');
                 }
               });
             });
@@ -826,7 +984,6 @@
       reader.readAsArrayBuffer(file);
     }
 
-    /* 🖨️ طباعة كافة البطاقات وتحديث حالة قاعدة البيانات إلى "مطبوعة" */
     function printAllBatch() {
       if (database.length === 0) {
         alert('لا توجد بطاقات للطباعة!');
@@ -853,10 +1010,10 @@
     }
 
     function downloadCurrentCard() {
-      const cardElement = document.querySelector('.card-wrapper');
-      if (!cardElement) return;
+      const cardFront = document.querySelector('.card-wrapper');
+      if (!cardFront) return;
 
-      html2canvas(cardElement, { scale: 3, useCORS: true }).then(canvas => {
+      html2canvas(cardFront, { scale: 3, useCORS: true }).then(canvas => {
         const link = document.createElement('a');
         link.download = `Student_Card_${document.getElementById('inputId').value || 'ID'}.png`;
         link.href = canvas.toDataURL('image/png');
