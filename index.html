@@ -14,7 +14,6 @@
       --accent-purple: #8b5cf6;
       --accent-pink: #ec4899;
       --accent-green: #10b981;
-      /* خلفية زجاجية شفافة تم تحسينها */
       --glass-bg: rgba(15, 23, 42, 0.45);
       --glass-border: rgba(255, 255, 255, 0.12);
     }
@@ -53,25 +52,9 @@
       animation: moveAndPulse 10s infinite alternate ease-in-out;
     }
 
-    .orb-1 {
-      width: 450px; height: 450px;
-      background: var(--accent-purple);
-      top: -100px; right: -50px;
-    }
-
-    .orb-2 {
-      width: 500px; height: 500px;
-      background: var(--primary-cyan);
-      bottom: -100px; left: -50px;
-      animation-delay: -5s;
-    }
-
-    .orb-3 {
-      width: 300px; height: 300px;
-      background: var(--accent-pink);
-      top: 40%; left: 40%;
-      animation-duration: 14s;
-    }
+    .orb-1 { width: 450px; height: 450px; background: var(--accent-purple); top: -100px; right: -50px; }
+    .orb-2 { width: 500px; height: 500px; background: var(--primary-cyan); bottom: -100px; left: -50px; animation-delay: -5s; }
+    .orb-3 { width: 300px; height: 300px; background: var(--accent-pink); top: 40%; left: 40%; animation-duration: 14s; }
 
     @keyframes moveAndPulse {
       0% { transform: translate(0, 0) scale(0.85); opacity: 0.4; }
@@ -79,7 +62,7 @@
       100% { transform: translate(80px, 60px) scale(1.2); opacity: 0.5; }
     }
 
-    /* 🎯 توسيط اللوجو واسم الموقع بالمليمتر في منتصف الصفحة */
+    /* 🎯 توسيط اللوجو واسم الموقع بالمليمتر */
     header {
       width: 100%;
       padding: 2.5rem 1rem 1.5rem 1rem;
@@ -130,7 +113,6 @@
       width: 100%;
     }
 
-    /* الهيكل الرئيسي وتصميم النوافذ الشفافة */
     .main-container {
       max-width: 1400px;
       margin: 20px auto;
@@ -144,7 +126,6 @@
 
     @media (max-width: 1024px) { .main-container { grid-template-columns: 1fr; } }
 
-    /* 🪟 نافذة التحكم الشفافة الراقية */
     .control-panel {
       background: var(--glass-bg);
       backdrop-filter: blur(16px);
@@ -195,7 +176,6 @@
       box-shadow: 0 0 15px rgba(6, 182, 212, 0.4);
     }
 
-    /* 💎 تصميم الأزرار الاحترافي والراقي */
     .action-section {
       margin-top: 20px;
       display: flex;
@@ -223,25 +203,11 @@
       backdrop-filter: blur(10px);
     }
 
-    .btn-print-front {
-      background: linear-gradient(135deg, rgba(6, 182, 212, 0.75), rgba(139, 92, 246, 0.75));
-    }
-
-    .btn-print-back {
-      background: linear-gradient(135deg, rgba(139, 92, 246, 0.75), rgba(236, 72, 153, 0.75));
-    }
-
-    .btn-download {
-      background: linear-gradient(135deg, rgba(16, 185, 129, 0.75), rgba(6, 182, 212, 0.75));
-    }
-
-    .btn-whatsapp {
-      background: linear-gradient(135deg, rgba(37, 211, 102, 0.75), rgba(16, 185, 129, 0.75));
-    }
-
-    .btn-email {
-      background: linear-gradient(135deg, rgba(245, 158, 11, 0.75), rgba(217, 119, 6, 0.75));
-    }
+    .btn-print-front { background: linear-gradient(135deg, rgba(6, 182, 212, 0.75), rgba(139, 92, 246, 0.75)); }
+    .btn-print-back { background: linear-gradient(135deg, rgba(139, 92, 246, 0.75), rgba(236, 72, 153, 0.75)); }
+    .btn-download { background: linear-gradient(135deg, rgba(16, 185, 129, 0.75), rgba(6, 182, 212, 0.75)); }
+    .btn-whatsapp { background: linear-gradient(135deg, rgba(37, 211, 102, 0.75), rgba(16, 185, 129, 0.75)); }
+    .btn-email { background: linear-gradient(135deg, rgba(245, 158, 11, 0.75), rgba(217, 119, 6, 0.75)); }
 
     .btn-action:hover {
       transform: translateY(-3px) scale(1.02);
@@ -255,7 +221,6 @@
       gap: 20px;
     }
 
-    /* 🪟 شريط البحث والتصفية بخصائص زجاجية شفافة */
     .search-filter-bar {
       background: var(--glass-bg);
       backdrop-filter: blur(16px);
@@ -271,10 +236,7 @@
       box-shadow: 0 10px 30px rgba(0,0,0,0.4);
     }
 
-    .search-input-group {
-      flex: 1;
-      min-width: 280px;
-    }
+    .search-input-group { flex: 1; min-width: 280px; }
 
     .search-input {
       width: 100%;
@@ -376,7 +338,6 @@
     #valId     { top: 201px; left: 245px; } 
     #valExpire { top: 258px; left: 245px; }
 
-    /* 🖨️ طباعة كل جهة بشكل مستقل */
     @media print {
       * { -webkit-print-color-adjust: exact !important; print-color-adjust: exact !important; }
       body { background: none !important; padding: 0 !important; }
@@ -397,13 +358,11 @@
 </head>
 <body>
 
-  <!-- نقاط ونقاط مضيئة متحركة تفاعلية -->
   <div class="bg-pattern"></div>
   <div class="glowing-orb orb-1"></div>
   <div class="glowing-orb orb-2"></div>
   <div class="glowing-orb orb-3"></div>
 
-  <!-- الهيدر الموائم في المنتصف تماماً -->
   <header>
     <div class="header-content">
       <img src="Untitled design_2.png" alt="Logo" class="header-logo" onerror="this.src='https://via.placeholder.com/140?text=EL+OULA'">
@@ -414,7 +373,6 @@
 
   <div class="main-container">
     
-    <!-- لوحة التحكم الشفافة -->
     <div class="control-panel">
       
       <div class="panel-title">
@@ -427,9 +385,10 @@
         <input type="text" id="inputName" value="MOHAMED BENALI" oninput="updateCardAndSave()">
       </div>
       
+      <!-- ضبط خيار السنة الأولى كافتراضي -->
       <div class="form-group">
         <label>المستوى الدراسي</label>
-        <input type="text" id="inputLevel" value="2ND YEAR HIGH SCHOOL" oninput="updateCardAndSave()">
+        <input type="text" id="inputLevel" value="1ST YEAR HIGH SCHOOL" oninput="updateCardAndSave()">
       </div>
 
       <div class="form-group">
@@ -447,7 +406,6 @@
         <input type="file" id="inputPhoto" accept="image/*" onchange="previewPhoto(event)">
       </div>
 
-      <!-- الأزرار الراقية الشفافة -->
       <div class="action-section">
         <button class="btn-action btn-print-front" onclick="printSide('front')">
           <span>🖨️</span> طباعة الوجه الأمامي
@@ -468,13 +426,13 @@
 
     </div>
 
-    <!-- منطقة المعاينة والبحث -->
     <div class="workspace">
       
       <div class="search-filter-bar">
         <div class="search-input-group">
           <input type="text" class="search-input" id="searchBox" placeholder="🔍 البحث بـ ID الطالب أو الباركود..." onkeyup="filterCard()">
         </div>
+        <!-- ترتيب تبويبات السنوات لتكون الأولى في المقدمة -->
         <div class="level-tabs">
           <button class="tab-btn active" onclick="filterLevel('ALL')">الكل</button>
           <button class="tab-btn" onclick="filterLevel('1ST YEAR')">السنة الأولى</button>
@@ -485,19 +443,17 @@
 
       <div class="cards-grid">
         
-        <!-- الوجه الأمامي -->
         <div class="card-box" id="frontCardBox">
           <div class="card-wrapper" id="frontCard">
             <img src="1_2.png" class="card-template-img" alt="Card Front">
             <img id="cardPhoto" class="student-photo" src="" style="display:none;">
             <div class="field-overlay" id="valName">MOHAMED BENALI</div>
-            <div class="field-overlay" id="valLevel">2ND YEAR HIGH SCHOOL</div>
+            <div class="field-overlay" id="valLevel">1ST YEAR HIGH SCHOOL</div>
             <div class="field-overlay" id="valId">2026-0089</div>
             <div class="field-overlay" id="valExpire">06 / 2027</div>
           </div>
         </div>
 
-        <!-- ظهر البطاقة -->
         <div class="card-box" id="backCardBox">
           <div class="card-wrapper" id="backCard">
             <img src="2_2.png" class="card-template-img" alt="Card Back">
@@ -512,7 +468,7 @@
   <script>
     function updateCardAndSave() {
       const name = document.getElementById('inputName').value.toUpperCase() || 'MOHAMED BENALI';
-      const level = document.getElementById('inputLevel').value.toUpperCase() || '2ND YEAR HIGH SCHOOL';
+      const level = document.getElementById('inputLevel').value.toUpperCase() || '1ST YEAR HIGH SCHOOL';
       const id = document.getElementById('inputId').value || '2026-0089';
       const expire = document.getElementById('inputExpire').value || '06 / 2027';
 
