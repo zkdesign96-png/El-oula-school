@@ -3,21 +3,21 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>EL OULA SCHOOL - Portal</title>
-  <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;700;800;900&family=Poppins:wght@700;800;900&display=swap" rel="stylesheet">
+  <title>EL OULA SCHOOL - Elite ID Portal</title>
+  <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700;800;900&family=Poppins:wght@700;800;900&display=swap" rel="stylesheet">
   <style>
     :root {
-      --bg-dark: #030712;
-      --glass-panel: rgba(17, 24, 39, 0.85);
-      --glass-border: rgba(255, 255, 255, 0.18);
+      --bg-gradient: linear-gradient(135deg, #0f172a 0%, #1e1b4b 50%, #0284c7 100%);
+      --glass-panel: rgba(15, 23, 42, 0.75);
+      --glass-border: rgba(255, 255, 255, 0.15);
       --accent-cyan: #38bdf8;
-      --accent-purple: #a855f7;
+      --accent-gold: #f59e0b;
     }
 
     * { box-sizing: border-box; margin: 0; padding: 0; font-family: 'Cairo', sans-serif; }
 
     body {
-      background-color: var(--bg-dark);
+      background: var(--bg-gradient);
       min-height: 100vh;
       color: #f8fafc;
       padding-bottom: 60px;
@@ -25,37 +25,34 @@
       overflow-x: hidden;
     }
 
-    /* خلفية متطورة متحركة Mesh Gradient */
-    .mesh-gradient {
+    /* خلفية متطورة بمؤثرات إضاءة زجاجية متحركة */
+    .glow-orb {
       position: fixed;
-      top: 0; left: 0; width: 100vw; height: 100vh;
-      z-index: -2;
-      background: 
-        radial-gradient(circle at 10% 20%, rgba(168, 85, 247, 0.35) 0%, transparent 40%),
-        radial-gradient(circle at 90% 80%, rgba(236, 72, 153, 0.3) 0%, transparent 45%),
-        radial-gradient(circle at 50% 50%, rgba(56, 189, 248, 0.2) 0%, transparent 55%);
-      filter: blur(50px);
-      animation: meshPulse 8s infinite alternate ease-in-out;
+      border-radius: 50%;
+      filter: blur(100px);
+      opacity: 0.5;
+      animation: floatGlow 10s infinite alternate ease-in-out;
+      z-index: -1;
+    }
+    .orb-1 { width: 450px; height: 450px; background: #6366f1; top: -100px; right: -100px; }
+    .orb-2 { width: 500px; height: 500px; background: #0284c7; bottom: -100px; left: -100px; animation-delay: -5s; }
+
+    @keyframes floatGlow {
+      0% { transform: translate(0, 0) scale(1); }
+      100% { transform: translate(30px, 40px) scale(1.1); }
     }
 
-    @keyframes meshPulse {
-      0% { transform: scale(1) rotate(0deg); }
-      100% { transform: scale(1.12) rotate(4deg); }
-    }
-
-    /* هيدر احترافي بوجو مكبّر وفخم */
+    /* الهيدر الفخم */
     header {
-      background: rgba(3, 7, 18, 0.9);
+      background: rgba(15, 23, 42, 0.85);
       backdrop-filter: blur(25px);
       -webkit-backdrop-filter: blur(25px);
-      border-bottom: 2px solid var(--glass-border);
+      border-bottom: 1px solid var(--glass-border);
       padding: 1.5rem 2rem;
       display: flex;
       justify-content: center;
       align-items: center;
-      box-shadow: 0 10px 40px rgba(0,0,0,0.9);
-      position: relative;
-      z-index: 10;
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
     }
 
     .header-center {
@@ -67,27 +64,26 @@
     }
 
     .badge-tag {
-      background: linear-gradient(135deg, var(--accent-cyan), var(--accent-purple));
-      color: #fff;
+      background: rgba(56, 189, 248, 0.15);
+      border: 1px solid var(--accent-cyan);
+      color: var(--accent-cyan);
       font-size: 0.8rem;
       font-weight: 800;
       padding: 4px 18px;
       border-radius: 20px;
       letter-spacing: 1px;
-      box-shadow: 0 0 20px rgba(56, 189, 248, 0.6);
     }
 
-    /* تكبير الشعار بوضوح ممتازة */
     .header-logo {
-      width: 120px;
-      height: 120px;
+      width: 110px;
+      height: 110px;
       object-fit: contain;
       background: #ffffff;
       border-radius: 20px;
       padding: 8px;
-      box-shadow: 0 0 35px rgba(168, 85, 247, 0.6);
-      border: 3px solid rgba(255, 255, 255, 0.9);
-      transition: transform 0.4s ease;
+      box-shadow: 0 0 30px rgba(56, 189, 248, 0.3);
+      border: 2px solid rgba(255, 255, 255, 0.8);
+      transition: transform 0.3s;
     }
     .header-logo:hover { transform: scale(1.05); }
 
@@ -97,69 +93,61 @@
       color: #ffffff;
       font-family: 'Poppins', sans-serif;
       letter-spacing: 1.5px;
-      text-shadow: 0 2px 10px rgba(0,0,0,0.5);
     }
 
-    .school-subtitle {
-      font-size: 0.85rem;
-      color: #94a3b8;
-      font-weight: 700;
-      letter-spacing: 0.5px;
-    }
+    .school-subtitle { font-size: 0.85rem; color: #94a3b8; font-weight: 700; }
 
+    /* تخطيط الصفحة */
     .container {
-      max-width: 1350px;
+      max-width: 1400px;
       margin: 40px auto;
-      padding: 0 20px;
+      padding: 0 25px;
       display: grid;
-      grid-template-columns: 380px 1fr;
+      grid-template-columns: 420px 1fr;
       gap: 40px;
     }
 
-    @media (max-width: 992px) { .container { grid-template-columns: 1fr; } }
+    @media (max-width: 1024px) { .container { grid-template-columns: 1fr; } }
 
     /* لوحة التحكم */
     .glass-panel {
       background: var(--glass-panel);
-      backdrop-filter: blur(25px);
-      -webkit-backdrop-filter: blur(25px);
+      backdrop-filter: blur(20px);
+      -webkit-backdrop-filter: blur(20px);
       border: 1px solid var(--glass-border);
       border-radius: 24px;
       padding: 30px;
-      box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.8);
+      box-shadow: 0 20px 40px rgba(0,0,0,0.4);
     }
 
     .section-title {
       font-size: 1.05rem;
       font-weight: 800;
-      margin-bottom: 18px;
+      margin-bottom: 20px;
       color: var(--accent-cyan);
       border-right: 4px solid var(--accent-cyan);
       padding-right: 12px;
     }
 
-    .form-group { margin-bottom: 16px; }
-    .form-group label { display: block; font-size: 0.85rem; font-weight: 700; margin-bottom: 8px; color: #cbd5e1; }
+    .form-group { margin-bottom: 18px; }
+    .form-group label { display: block; font-size: 0.85rem; font-weight: 700; margin-bottom: 8px; color: #e2e8f0; }
     .form-group input {
       width: 100%;
       padding: 12px 16px;
       border: 1px solid var(--glass-border);
-      background: rgba(15, 23, 42, 0.8);
+      background: rgba(30, 41, 59, 0.7);
       border-radius: 12px;
       font-size: 0.9rem;
       color: #fff;
       font-weight: 600;
       outline: none;
-      transition: all 0.3s ease;
+      transition: all 0.3s;
     }
-    .form-group input:focus {
-      border-color: var(--accent-cyan);
-      box-shadow: 0 0 15px rgba(56, 189, 248, 0.3);
-    }
+    .form-group input:focus { border-color: var(--accent-cyan); box-shadow: 0 0 15px rgba(56, 189, 248, 0.3); }
 
     .file-dropzone {
-      border: 2px dashed var(--accent-purple);
-      background: rgba(168, 85, 247, 0.12);
+      border: 2px dashed var(--accent-cyan);
+      background: rgba(56, 189, 248, 0.08);
       border-radius: 14px;
       padding: 18px;
       text-align: center;
@@ -170,30 +158,56 @@
       font-weight: 700;
       transition: all 0.3s;
     }
-    .file-dropzone:hover { background: rgba(168, 85, 247, 0.22); }
+    .file-dropzone:hover { background: rgba(56, 189, 248, 0.18); }
 
     .btn-print {
       width: 100%;
       padding: 14px;
-      background: linear-gradient(135deg, var(--accent-cyan), #2563eb);
+      background: linear-gradient(135deg, #0284c7, #2563eb);
       border: none;
       border-radius: 12px;
       color: white;
       font-weight: 800;
       font-size: 1rem;
       cursor: pointer;
-      box-shadow: 0 8px 25px rgba(56, 189, 248, 0.4);
+      box-shadow: 0 8px 25px rgba(2, 132, 199, 0.4);
       transition: all 0.3s;
     }
-    .btn-print:hover { transform: translateY(-2px); }
+    .btn-print:hover { transform: translateY(-2px); box-shadow: 0 12px 30px rgba(2, 132, 199, 0.6); }
 
-    /* منطقة معاينة البطاقة */
+    /* منطقة معاينة البطاقة مع إمكانية التكبير */
     .cards-preview-area {
       display: flex;
       flex-direction: column;
-      gap: 40px;
+      gap: 35px;
       align-items: center;
     }
+
+    .card-box {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .zoom-controls {
+      display: flex;
+      gap: 10px;
+      align-items: center;
+    }
+
+    .zoom-btn {
+      background: rgba(255, 255, 255, 0.15);
+      border: 1px solid var(--glass-border);
+      color: #fff;
+      padding: 4px 12px;
+      border-radius: 8px;
+      cursor: pointer;
+      font-size: 0.8rem;
+      font-weight: 700;
+      transition: 0.2s;
+    }
+    .zoom-btn:hover { background: var(--accent-cyan); color: #000; }
 
     .card-wrapper {
       position: relative;
@@ -201,8 +215,10 @@
       height: 315px;
       border-radius: 18px;
       overflow: hidden;
-      box-shadow: 0 20px 50px rgba(0,0,0,0.9);
+      box-shadow: 0 20px 50px rgba(0,0,0,0.8);
       border: 1px solid rgba(255,255,255,0.3);
+      transition: transform 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+      transform-origin: center top;
     }
 
     .card-front, .card-back {
@@ -224,7 +240,7 @@
       border-radius: 4px;
     }
 
-    /* كتابة واضحة وموضوعة بالضبط بجانب الخانات المكتوبة على الصورة */
+    /* ضبط مواضع النصوص بناءً على الطلب بالضبط */
     .field-overlay {
       position: absolute;
       font-weight: 900 !important;
@@ -234,28 +250,29 @@
       white-space: nowrap;
     }
 
-    /* مواقع النصوص بالضبط بجانب كل عنوان خانة */
-    #valName   { top: 127px; left: 245px; }
-    #valLevel  { top: 167px; left: 245px; }
-    #valId     { top: 206px; left: 245px; }
-    #valExpire { top: 248px; left: 245px; }
+    #valName   { top: 121px; left: 245px; } /* تم رفعه قاطبة */
+    #valLevel  { top: 172px; left: 245px; } /* تم تنزيله */
+    #valId     { top: 201px; left: 245px; } /* تم رفعه */
+    #valExpire { top: 253px; left: 245px; } /* تم تنزيله */
 
     @media print {
       body * { visibility: hidden; }
       .cards-preview-area, .cards-preview-area * { visibility: visible; }
       .cards-preview-area { position: absolute; top: 0; left: 0; width: 100%; gap: 20px; }
-      .card-wrapper { page-break-after: always; box-shadow: none; border: none; }
+      .card-wrapper { page-break-after: always; box-shadow: none; border: none; transform: scale(1) !important; }
+      .zoom-controls { display: none; }
     }
   </style>
 </head>
 <body>
 
-  <div class="mesh-gradient"></div>
+  <div class="glow-orb orb-1"></div>
+  <div class="glow-orb orb-2"></div>
 
   <header>
     <div class="header-center">
       <span class="badge-tag">منصة إصدار البطاقات المدرسية الذكية</span>
-      <img src="Untitled design_2.png" alt="Logo" class="header-logo" onerror="this.src='https://via.placeholder.com/120?text=EL+OULA'">
+      <img src="Untitled design_2.png" alt="Logo" class="header-logo" onerror="this.src='https://via.placeholder.com/110?text=EL+OULA'">
       <div class="school-title">EL OULA SCHOOL</div>
       <div class="school-subtitle">ECOLE DE LANGUES ET DE FORMATION</div>
     </div>
@@ -300,20 +317,41 @@
       <button class="btn-print" onclick="window.print()">🖨️ طباعة البطاقات المحددة</button>
     </div>
 
+    <!-- منطقة المعاينة مع التحكم بحجم التكبير والتصغير -->
     <div class="cards-preview-area">
-      <div class="card-wrapper">
-        <div class="card-front" id="cardFrontBg">
-          <img id="cardPhoto" class="student-photo-overlay" src="" style="display:none;">
-          <div class="field-overlay" id="valName">BENALI MOHAMED</div>
-          <div class="field-overlay" id="valLevel">2ND YEAR HIGH SCHOOL</div>
-          <div class="field-overlay" id="valId">2026-0089</div>
-          <div class="field-overlay" id="valExpire">06 / 2027</div>
+      
+      <!-- الوجه الأمامي -->
+      <div class="card-box">
+        <div class="zoom-controls">
+          <span>🔍 الوجه الأمامي:</span>
+          <button class="zoom-btn" onclick="zoomCard('frontCard', 0.1)">+</button>
+          <button class="zoom-btn" onclick="zoomCard('frontCard', -0.1)">-</button>
+          <button class="zoom-btn" onclick="resetZoom('frontCard')">إعادة ضبط</button>
+        </div>
+        <div class="card-wrapper" id="frontCard">
+          <div class="card-front" id="cardFrontBg">
+            <img id="cardPhoto" class="student-photo-overlay" src="" style="display:none;">
+            <div class="field-overlay" id="valName">BENALI MOHAMED</div>
+            <div class="field-overlay" id="valLevel">2ND YEAR HIGH SCHOOL</div>
+            <div class="field-overlay" id="valId">2026-0089</div>
+            <div class="field-overlay" id="valExpire">06 / 2027</div>
+          </div>
         </div>
       </div>
 
-      <div class="card-wrapper">
-        <div class="card-back" id="cardBackBg"></div>
+      <!-- الظهر -->
+      <div class="card-box">
+        <div class="zoom-controls">
+          <span>🔍 الظهر:</span>
+          <button class="zoom-btn" onclick="zoomCard('backCard', 0.1)">+</button>
+          <button class="zoom-btn" onclick="zoomCard('backCard', -0.1)">-</button>
+          <button class="zoom-btn" onclick="resetZoom('backCard')">إعادة ضبط</button>
+        </div>
+        <div class="card-wrapper" id="backCard">
+          <div class="card-back" id="cardBackBg"></div>
+        </div>
       </div>
+
     </div>
 
   </div>
@@ -321,6 +359,18 @@
   <script>
     document.getElementById('cardFrontBg').style.backgroundImage = "url('1_2.png')";
     document.getElementById('cardBackBg').style.backgroundImage = "url('2_2.png')";
+
+    const scales = { frontCard: 1, backCard: 1 };
+
+    function zoomCard(cardId, delta) {
+      scales[cardId] = Math.min(Math.max(0.7, scales[cardId] + delta), 1.5);
+      document.getElementById(cardId).style.transform = `scale(${scales[cardId]})`;
+    }
+
+    function resetZoom(cardId) {
+      scales[cardId] = 1;
+      document.getElementById(cardId).style.transform = 'scale(1)';
+    }
 
     function updateCard() {
       document.getElementById('valName').innerText = document.getElementById('inputName').value.toUpperCase() || 'BENALI MOHAMED';
