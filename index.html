@@ -3,56 +3,60 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>EL OULA SCHOOL - منصة بطاقات الطلاب</title>
-  <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700;800&family=Poppins:wght@500;700;800&display=swap" rel="stylesheet">
+  <title>EL OULA SCHOOL - Elite ID Portal</title>
+  <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700;800;900&family=Poppins:wght@600;700;800;900&display=swap" rel="stylesheet">
   <style>
     :root {
-      --glass-bg: rgba(15, 23, 42, 0.7);
-      --glass-border: rgba(255, 255, 255, 0.15);
-      --accent-color: #38bdf8;
+      --bg-dark: #030712;
+      --glass-panel: rgba(17, 24, 39, 0.75);
+      --glass-border: rgba(255, 255, 255, 0.12);
+      --primary-cyan: #38bdf8;
+      --primary-purple: #a855f7;
+      --primary-pink: #ec4899;
     }
 
     * { box-sizing: border-box; margin: 0; padding: 0; font-family: 'Cairo', sans-serif; }
 
     body {
-      background: #090d16;
+      background-color: var(--bg-dark);
       min-height: 100vh;
       color: #f8fafc;
-      padding-bottom: 50px;
+      padding-bottom: 60px;
       position: relative;
       overflow-x: hidden;
     }
 
-    /* خلفيات ضوئية متحركة */
-    .orb {
-      position: absolute;
-      border-radius: 50%;
-      filter: blur(90px);
-      opacity: 0.6;
-      animation: floatOrb 10s infinite alternate ease-in-out;
-      z-index: -1;
+    /* خلفية متطورة متحركة Mesh Gradient */
+    .mesh-gradient {
+      position: fixed;
+      top: 0; left: 0; width: 100vw; height: 100vh;
+      z-index: -2;
+      background: 
+        radial-gradient(circle at 15% 20%, rgba(168, 85, 247, 0.25) 0%, transparent 45%),
+        radial-gradient(circle at 85% 80%, rgba(236, 72, 153, 0.2) 0%, transparent 50%),
+        radial-gradient(circle at 50% 50%, rgba(56, 189, 248, 0.15) 0%, transparent 60%);
+      filter: blur(60px);
+      animation: meshPulse 12s infinite alternate ease-in-out;
     }
 
-    .orb-1 { width: 350px; height: 350px; background: #8b5cf6; top: -50px; right: -50px; }
-    .orb-2 { width: 400px; height: 400px; background: #ec4899; bottom: 50px; left: -100px; animation-delay: -3s; }
-    .orb-3 { width: 300px; height: 300px; background: #06b6d4; top: 40%; right: 30%; animation-delay: -6s; }
-
-    @keyframes floatOrb {
-      0% { transform: translate(0, 0) scale(1); }
-      100% { transform: translate(40px, 50px) scale(1.15); }
+    @keyframes meshPulse {
+      0% { transform: scale(1) rotate(0deg); }
+      100% { transform: scale(1.1) rotate(5deg); }
     }
 
-    /* الهيدر الزجاجي - اسم الصفحة واللوجو متموقعين في الوسط تماماً */
+    /* الهيدر الاحترافي الفائز بالجوائز */
     header {
-      background: rgba(15, 23, 42, 0.85);
-      backdrop-filter: blur(20px);
-      -webkit-backdrop-filter: blur(20px);
+      background: rgba(3, 7, 18, 0.85);
+      backdrop-filter: blur(25px);
+      -webkit-backdrop-filter: blur(25px);
       border-bottom: 1px solid var(--glass-border);
-      padding: 1rem 2rem;
+      padding: 1.2rem 2rem;
       display: flex;
       justify-content: center;
       align-items: center;
-      box-shadow: 0 4px 30px rgba(0, 0, 0, 0.5);
+      box-shadow: 0 10px 40px rgba(0,0,0,0.8);
+      position: relative;
+      z-index: 10;
     }
 
     .header-center {
@@ -60,126 +64,142 @@
       flex-direction: column;
       align-items: center;
       text-align: center;
-      gap: 6px;
+      gap: 8px;
     }
 
-    .page-title {
-      font-size: 1rem;
-      font-weight: 700;
-      color: var(--accent-color);
-      letter-spacing: 0.5px;
+    .badge-tag {
+      background: linear-gradient(135deg, var(--primary-cyan), var(--primary-purple));
+      color: #fff;
+      font-size: 0.75rem;
+      font-weight: 800;
+      padding: 3px 14px;
+      border-radius: 20px;
+      letter-spacing: 1px;
+      box-shadow: 0 0 15px rgba(56, 189, 248, 0.5);
     }
 
     .header-logo {
-      width: 70px;
-      height: 70px;
+      width: 75px;
+      height: 75px;
       object-fit: contain;
-      background: rgba(255, 255, 255, 0.95);
-      border-radius: 14px;
+      background: #ffffff;
+      border-radius: 16px;
       padding: 6px;
-      box-shadow: 0 0 25px rgba(56, 189, 248, 0.4);
-      margin: 2px 0;
+      box-shadow: 0 0 30px rgba(168, 85, 247, 0.5);
+      border: 2px solid rgba(255, 255, 255, 0.8);
+      transition: transform 0.4s ease;
     }
+    .header-logo:hover { transform: scale(1.08) rotate(-3deg); }
 
     .school-title {
-      font-size: 1.3rem;
-      font-weight: 800;
+      font-size: 1.5rem;
+      font-weight: 900;
       color: #ffffff;
-      font-family: 'Poppins', 'Cairo', sans-serif;
-      line-height: 1.1;
+      font-family: 'Poppins', sans-serif;
+      letter-spacing: 1px;
+      text-shadow: 0 2px 10px rgba(0,0,0,0.5);
     }
 
     .school-subtitle {
-      font-size: 0.75rem;
+      font-size: 0.8rem;
       color: #94a3b8;
-      font-weight: 600;
+      font-weight: 700;
+      letter-spacing: 0.5px;
     }
 
     .container {
-      max-width: 1250px;
-      margin: 30px auto;
+      max-width: 1300px;
+      margin: 40px auto;
       padding: 0 20px;
       display: grid;
-      grid-template-columns: 380px 1fr;
-      gap: 35px;
+      grid-template-columns: 400px 1fr;
+      gap: 40px;
     }
 
     @media (max-width: 992px) { .container { grid-template-columns: 1fr; } }
 
-    /* لوحة التحكم والمدخلات */
+    /* لوحة التحكم الجانبية Ultra-Glassmorphism */
     .glass-panel {
-      background: var(--glass-bg);
-      backdrop-filter: blur(20px);
-      -webkit-backdrop-filter: blur(20px);
+      background: var(--glass-panel);
+      backdrop-filter: blur(25px);
+      -webkit-backdrop-filter: blur(25px);
       border: 1px solid var(--glass-border);
-      border-radius: 20px;
-      padding: 25px;
-      box-shadow: 0 20px 40px rgba(0,0,0,0.4);
+      border-radius: 24px;
+      padding: 30px;
+      box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.7);
     }
 
     .section-title {
-      font-size: 1rem;
+      font-size: 1.05rem;
       font-weight: 800;
-      margin-bottom: 15px;
-      color: var(--accent-color);
-      border-right: 4px solid var(--accent-color);
-      padding-right: 10px;
+      margin-bottom: 18px;
+      color: var(--primary-cyan);
+      border-right: 4px solid var(--primary-cyan);
+      padding-right: 12px;
     }
 
-    .form-group { margin-bottom: 15px; }
-    .form-group label { display: block; font-size: 0.8rem; font-weight: 700; margin-bottom: 6px; color: #e2e8f0; }
+    .form-group { margin-bottom: 16px; }
+    .form-group label { display: block; font-size: 0.85rem; font-weight: 700; margin-bottom: 8px; color: #cbd5e1; }
     .form-group input {
       width: 100%;
-      padding: 10px 14px;
+      padding: 12px 16px;
       border: 1px solid var(--glass-border);
-      background: rgba(30, 41, 59, 0.7);
-      border-radius: 10px;
-      font-size: 0.85rem;
+      background: rgba(15, 23, 42, 0.8);
+      border-radius: 12px;
+      font-size: 0.9rem;
       color: #fff;
+      font-weight: 600;
       outline: none;
-      transition: all 0.3s;
+      transition: all 0.3s ease;
     }
-    .form-group input:focus { border-color: var(--accent-color); box-shadow: 0 0 10px rgba(56, 189, 248, 0.3); }
+    .form-group input:focus {
+      border-color: var(--primary-cyan);
+      box-shadow: 0 0 15px rgba(56, 189, 248, 0.3);
+      background: rgba(15, 23, 42, 0.95);
+    }
 
     .file-dropzone {
-      border: 2px dashed #ec4899;
-      background: rgba(236, 72, 153, 0.1);
-      border-radius: 12px;
-      padding: 15px;
+      border: 2px dashed var(--primary-purple);
+      background: rgba(168, 85, 247, 0.08);
+      border-radius: 14px;
+      padding: 18px;
       text-align: center;
       cursor: pointer;
-      margin-bottom: 20px;
+      margin-bottom: 22px;
       color: #e2e8f0;
       font-size: 0.85rem;
-      font-weight: 600;
-      transition: 0.3s;
+      font-weight: 700;
+      transition: all 0.3s;
     }
-    .file-dropzone:hover { background: rgba(236, 72, 153, 0.2); }
+    .file-dropzone:hover {
+      background: rgba(168, 85, 247, 0.18);
+      border-color: var(--primary-pink);
+    }
 
     .btn-print {
       width: 100%;
-      padding: 12px;
-      background: linear-gradient(135deg, #06b6d4, #3b82f6);
+      padding: 14px;
+      background: linear-gradient(135deg, var(--primary-cyan), #2563eb);
       border: none;
-      border-radius: 10px;
+      border-radius: 12px;
       color: white;
       font-weight: 800;
-      font-size: 0.95rem;
+      font-size: 1rem;
       cursor: pointer;
-      box-shadow: 0 4px 15px rgba(6, 182, 212, 0.4);
+      box-shadow: 0 8px 25px rgba(56, 189, 248, 0.35);
       transition: all 0.3s;
       display: flex;
       align-items: center;
       justify-content: center;
-      gap: 8px;
+      gap: 10px;
     }
-    .btn-print:hover { transform: translateY(-2px); box-shadow: 0 6px 20px rgba(6, 182, 212, 0.6); }
+    .btn-print:hover { transform: translateY(-3px); box-shadow: 0 12px 30px rgba(56, 189, 248, 0.5); }
 
-    /* معاينة البطاقات */
+    /* منطقة معاينة البطاقات */
     .cards-preview-area {
       display: flex;
       flex-direction: column;
-      gap: 30px;
+      gap: 40px;
       align-items: center;
     }
 
@@ -187,11 +207,13 @@
       position: relative;
       width: 500px;
       height: 315px;
-      border-radius: 16px;
+      border-radius: 18px;
       overflow: hidden;
-      box-shadow: 0 15px 35px rgba(0,0,0,0.6);
-      border: 1px solid rgba(255,255,255,0.2);
+      box-shadow: 0 20px 40px rgba(0,0,0,0.8);
+      border: 1px solid rgba(255,255,255,0.25);
+      transition: transform 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
     }
+    .card-wrapper:hover { transform: scale(1.02); }
 
     .card-front, .card-back {
       width: 100%;
@@ -201,29 +223,33 @@
       position: relative;
     }
 
+    /* موضع صورة الطالب الدقيق */
     .student-photo-overlay {
       position: absolute;
       top: 132px;
-      left: 30px;
-      width: 114px;
+      left: 31px;
+      width: 112px;
       height: 122px;
       object-fit: cover;
       border-radius: 4px;
     }
 
+    /* التموضع المليمترية والخط العريض الواضح جداً داخل المستطيلات */
     .field-overlay {
       position: absolute;
-      font-weight: 700;
-      color: #000;
-      font-size: 12.5px;
+      font-weight: 800 !important; /* خط عريض جداً ممتاز للوضوح */
+      color: #050505;
+      font-size: 13px;
       font-family: 'Poppins', sans-serif;
       white-space: nowrap;
+      letter-spacing: 0.3px;
     }
 
-    #valName { top: 124px; left: 232px; }
-    #valLevel { top: 163px; left: 232px; }
-    #valId { top: 202px; left: 232px; }
-    #valExpire { top: 244px; left: 232px; }
+    /* الضبط الدقيق لمركز كل مستطيل */
+    #valName   { top: 125px; left: 236px; }
+    #valLevel  { top: 165px; left: 236px; }
+    #valId     { top: 204px; left: 236px; }
+    #valExpire { top: 246px; left: 236px; }
 
     @media print {
       body * { visibility: hidden; }
@@ -235,16 +261,13 @@
 </head>
 <body>
 
-  <!-- مؤثرات خلفية متحركة -->
-  <div class="orb orb-1"></div>
-  <div class="orb orb-2"></div>
-  <div class="orb orb-3"></div>
+  <div class="mesh-gradient"></div>
 
-  <!-- الهيدر: عنوان الصفحة في الوسط تماماً حول الشعار -->
+  <!-- هيدر متكامل بالكامل في الوسط -->
   <header>
     <div class="header-center">
-      <div class="page-title">منصة إنشاء واستخراج بطاقات الطلاب</div>
-      <img src="Untitled design_2.png" alt="Logo" class="header-logo" onerror="this.src='https://via.placeholder.com/70?text=LOGO'">
+      <span class="badge-tag">منصة إصدار البطاقات المدرسية الذكية</span>
+      <img src="Untitled design_2.png" alt="Logo" class="header-logo" onerror="this.src='https://via.placeholder.com/75?text=EL+OULA'">
       <div class="school-title">EL OULA SCHOOL</div>
       <div class="school-subtitle">ECOLE DE LANGUES ET DE FORMATION</div>
     </div>
@@ -252,15 +275,15 @@
 
   <div class="container">
     
-    <!-- لوحة التحكم -->
+    <!-- لوحة التحكم الجانبية -->
     <div class="glass-panel">
-      <div class="section-title">📁 رفع ملفات البيانات</div>
+      <div class="section-title">📁 رفع ملفات البيانات (Mass Data)</div>
       <div class="file-dropzone" onclick="document.getElementById('bulkFile').click()">
         اضغط لرفع ملف (Excel / PDF / ZIP)
         <input type="file" id="bulkFile" hidden accept=".xlsx, .xls, .csv, .pdf, .zip">
       </div>
 
-      <div class="section-title">✏️ بيانات الطالب الحالية</div>
+      <div class="section-title">✏️ تعديل بيانات البطاقة الحالية</div>
       
       <div class="form-group">
         <label>اسم الطالب (NAME)</label>
@@ -287,7 +310,7 @@
         <input type="file" id="inputPhoto" accept="image/*" onchange="previewPhoto(event)">
       </div>
 
-      <button class="btn-print" onclick="window.print()">🖨️ طباعة بطاقة الطالب</button>
+      <button class="btn-print" onclick="window.print()">🖨️ طباعة البطاقة عالية الدقة</button>
     </div>
 
     <!-- المعاينة الحية للبطاقة -->
@@ -298,10 +321,10 @@
         <div class="card-front" id="cardFrontBg">
           <img id="cardPhoto" class="student-photo-overlay" src="" style="display:none;">
           
-          <div class="field-overlay" id="valName">---</div>
-          <div class="field-overlay" id="valLevel">---</div>
-          <div class="field-overlay" id="valId">---</div>
-          <div class="field-overlay" id="valExpire">---</div>
+          <div class="field-overlay" id="valName">BENALI MOHAMED</div>
+          <div class="field-overlay" id="valLevel">2ND YEAR HIGH SCHOOL</div>
+          <div class="field-overlay" id="valId">2026-0089</div>
+          <div class="field-overlay" id="valExpire">06 / 2027</div>
         </div>
       </div>
 
@@ -315,14 +338,15 @@
   </div>
 
   <script>
+    // ربط الخلفيات بحسب الأسماء المطلوبة
     document.getElementById('cardFrontBg').style.backgroundImage = "url('1_2.png')";
     document.getElementById('cardBackBg').style.backgroundImage = "url('2_2.png')";
 
     function updateCard() {
-      document.getElementById('valName').innerText = document.getElementById('inputName').value || '---';
-      document.getElementById('valLevel').innerText = document.getElementById('inputLevel').value || '---';
-      document.getElementById('valId').innerText = document.getElementById('inputId').value || '---';
-      document.getElementById('valExpire').innerText = document.getElementById('inputExpire').value || '---';
+      document.getElementById('valName').innerText = document.getElementById('inputName').value.toUpperCase() || 'BENALI MOHAMED';
+      document.getElementById('valLevel').innerText = document.getElementById('inputLevel').value.toUpperCase() || '2ND YEAR HIGH SCHOOL';
+      document.getElementById('valId').innerText = document.getElementById('inputId').value || '2026-0089';
+      document.getElementById('valExpire').innerText = document.getElementById('inputExpire').value || '06 / 2027';
     }
 
     function previewPhoto(event) {
