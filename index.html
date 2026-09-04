@@ -187,6 +187,7 @@
       gap: 8px;
     }
 
+    /* حاوي البطاقة الهيكلي */
     .card-wrapper {
       position: relative;
       width: 500px;
@@ -197,11 +198,15 @@
       border: 1px solid rgba(255,255,255,0.2);
     }
 
-    .card-front, .card-back {
-      width: 100%; height: 100%;
-      background-size: 100% 100%;
-      background-position: center;
-      position: relative;
+    /* صورة تصميم البطاقة الثابتة بدلاً من background-image */
+    .card-template-img {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      object-fit: fill;
+      z-index: 1;
     }
 
     .student-photo {
@@ -210,6 +215,7 @@
       width: 112px; height: 122px;
       object-fit: cover;
       border-radius: 4px;
+      z-index: 2;
     }
 
     .field-overlay {
@@ -219,6 +225,7 @@
       font-size: 13.5px;
       font-family: 'Poppins', sans-serif;
       white-space: nowrap;
+      z-index: 3;
     }
 
     #valName   { top: 115px; left: 245px; }
@@ -235,12 +242,11 @@
       cursor: pointer;
     }
 
-    /* 🖨️ الكود الخاص بإجبار المتصفح على طباعة الصور والخلفيات */
+    /* إعدادات الطباعة الإجبارية */
     @media print {
       * {
         -webkit-print-color-adjust: exact !important;
         print-color-adjust: exact !important;
-        color-adjust: exact !important;
       }
 
       body {
@@ -262,7 +268,7 @@
 
       .card-box {
         page-break-inside: avoid;
-        margin-bottom: 30px;
+        margin-bottom: 20px;
       }
 
       .card-wrapper {
@@ -334,6 +340,7 @@
 
       <div class="cards-grid">
         
+        <!-- الوجه الأمامي -->
         <div class="card-box">
           <div class="zoom-controls">
             <span>الوجه الأمامي</span>
@@ -341,16 +348,18 @@
             <button class="zoom-btn" onclick="zoom('frontCard', -0.1)">-</button>
           </div>
           <div class="card-wrapper" id="frontCard">
-            <div class="card-front" id="cardFrontBg">
-              <img id="cardPhoto" class="student-photo" src="" style="display:none;">
-              <div class="field-overlay" id="valName">BENALI MOHAMED</div>
-              <div class="field-overlay" id="valLevel">2ND YEAR HIGH SCHOOL</div>
-              <div class="field-overlay" id="valId">2026-0089</div>
-              <div class="field-overlay" id="valExpire">06 / 2027</div>
-            </div>
+            <!-- صورة تصميم البطاقة كعنصر img مستقل للطباعة الإجبارية -->
+            <img src="1_2.png" class="card-template-img" alt="Card Front">
+            
+            <img id="cardPhoto" class="student-photo" src="" style="display:none;">
+            <div class="field-overlay" id="valName">BENALI MOHAMED</div>
+            <div class="field-overlay" id="valLevel">2ND YEAR HIGH SCHOOL</div>
+            <div class="field-overlay" id="valId">2026-0089</div>
+            <div class="field-overlay" id="valExpire">06 / 2027</div>
           </div>
         </div>
 
+        <!-- الظهر -->
         <div class="card-box">
           <div class="zoom-controls">
             <span>الظهر</span>
@@ -358,7 +367,7 @@
             <button class="zoom-btn" onclick="zoom('backCard', -0.1)">-</button>
           </div>
           <div class="card-wrapper" id="backCard">
-            <div class="card-back" id="cardBackBg"></div>
+            <img src="2_2.png" class="card-template-img" alt="Card Back">
           </div>
         </div>
 
@@ -369,9 +378,6 @@
   </div>
 
   <script>
-    document.getElementById('cardFrontBg').style.backgroundImage = "url('1_2.png')";
-    document.getElementById('cardBackBg').style.backgroundImage = "url('2_2.png')";
-
     const scales = { frontCard: 1, backCard: 1 };
 
     function zoom(id, delta) {
