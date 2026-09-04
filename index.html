@@ -374,8 +374,8 @@
 
   <header>
     <div class="header-content">
-      <!-- 🖼️ تم تعديل اللوجو إلى 2_2.png -->
-      <img src="2_2.png" alt="Logo" class="header-logo" onerror="this.style.display='none'">
+      <!-- 🖼️ صورة اللوجو -->
+      <img src="Untitled design_2.png" alt="Logo" class="header-logo" onerror="this.style.display='none'">
       <div class="site-title">EL OULA SCHOOL</div>
       <div class="site-subtitle">نظام إدراج وتعديل وطباعة بطاقات الطلاب الذكية</div>
     </div>
@@ -452,7 +452,6 @@
         <button type="button" class="btn-action btn-batch" onclick="saveCurrentToDb()">
           <span id="btnSaveText">💾 حفظ البطاقة / التعديلات</span>
         </button>
-        <!-- 🖨️ طباعة Recto / Verso -->
         <button type="button" class="btn-action btn-print-batch" onclick="printAllBatch()">
           <span>🖨️</span> طباعة كل البطاقات (Recto / Verso)
         </button>
@@ -592,9 +591,9 @@
               <div class="field-overlay valExpire">${item.expire}</div>
             </div>
 
-            <!-- الوجه الخلفي (Verso) -->
+            <!-- الوجه الخلفي (Verso) - تم تعديل المسار لـ 2_2.png -->
             <div class="card-wrapper" id="card-back-${idx}">
-              <img src="2_1.png" class="card-template-img" alt="Card Back" onerror="this.src='${defaultBackSVG}'">
+              <img src="2_2.png" class="card-template-img" alt="Card Back" onerror="this.src='${defaultBackSVG}'">
             </div>
           `;
           grid.appendChild(cardBox);
@@ -775,7 +774,6 @@
       reader.readAsArrayBuffer(file);
     }
 
-    /* 🖨️ طباعة Recto et Verso لكل البطاقات */
     function printAllBatch() {
       if (database.length === 0) {
         alert('لا توجد بطاقات للطباعة');
