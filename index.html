@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>EL OULA SCHOOL - Smart ID Portal & Batch Generator</title>
+  <title>EL OULA SCHOOL - Smart ID Portal</title>
   <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700;800;900&family=Poppins:wght@700;800;900&display=swap" rel="stylesheet">
   
   <!-- Libraries -->
@@ -32,7 +32,6 @@
       overflow-x: hidden;
     }
 
-    /* 🌟 الكرات والنقاط المضيئة المتحركة في الخلفية */
     .bg-pattern {
       position: fixed;
       top: 0; left: 0; width: 100vw; height: 100vh;
@@ -57,17 +56,15 @@
 
     .orb-1 { width: 450px; height: 450px; background: var(--accent-purple); top: -100px; right: -50px; }
     .orb-2 { width: 500px; height: 500px; background: var(--primary-cyan); bottom: -100px; left: -50px; animation-delay: -5s; }
-    .orb-3 { width: 300px; height: 300px; background: var(--accent-pink); top: 40%; left: 40%; animation-duration: 14s; }
 
     @keyframes moveAndPulse {
       0% { transform: translate(0, 0) scale(0.85); opacity: 0.4; }
-      50% { opacity: 0.8; filter: blur(100px); }
       100% { transform: translate(80px, 60px) scale(1.2); opacity: 0.5; }
     }
 
     header {
       width: 100%;
-      padding: 2.5rem 1rem 1.5rem 1rem;
+      padding: 2rem 1rem;
       display: flex;
       justify-content: center;
       align-items: center;
@@ -81,46 +78,38 @@
       flex-direction: column;
       align-items: center;
       justify-content: center;
-      margin: 0 auto;
-      text-align: center;
-      width: 100%;
       max-width: 600px;
     }
 
     .header-logo {
-      width: 140px;
-      height: 140px;
+      width: 120px;
+      height: 120px;
       object-fit: contain;
-      filter: drop-shadow(0 0 25px rgba(6, 182, 212, 0.7));
+      filter: drop-shadow(0 0 20px rgba(6, 182, 212, 0.7));
       margin-bottom: 10px;
-      display: block;
     }
 
     .site-title {
-      font-size: 2.5rem;
+      font-size: 2.2rem;
       font-weight: 900;
       color: #ffffff;
       font-family: 'Poppins', sans-serif;
       letter-spacing: 2px;
-      text-align: center;
-      width: 100%;
     }
 
     .site-subtitle {
-      font-size: 1rem;
+      font-size: 0.95rem;
       color: var(--primary-cyan);
       font-weight: 700;
-      text-align: center;
       margin-top: 4px;
-      width: 100%;
     }
 
     .main-container {
       max-width: 1400px;
-      margin: 20px auto;
+      margin: 10px auto;
       padding: 0 20px;
       display: grid;
-      grid-template-columns: 420px 1fr;
+      grid-template-columns: 400px 1fr;
       gap: 30px;
       position: relative;
       z-index: 10;
@@ -136,6 +125,7 @@
       border-radius: 24px;
       padding: 25px;
       box-shadow: 0 20px 40px rgba(0,0,0,0.5);
+      height: fit-content;
     }
 
     .panel-title {
@@ -188,61 +178,49 @@
       margin-bottom: 18px;
     }
 
-    .batch-upload-box p {
-      font-size: 0.82rem;
-      color: #94a3b8;
-      margin-top: 6px;
-    }
+    .batch-upload-box p { font-size: 0.8rem; color: #94a3b8; margin-top: 6px; }
 
     .action-section {
       margin-top: 15px;
       display: flex;
       flex-direction: column;
-      gap: 10px;
+      gap: 12px;
     }
 
     .btn-action {
       position: relative;
       width: 100%;
-      padding: 12px 18px;
+      padding: 14px 18px;
       border: 1px solid var(--glass-border);
       border-radius: 14px;
       color: white;
       font-weight: 800;
-      font-size: 0.9rem;
+      font-size: 0.92rem;
       cursor: pointer;
       display: flex;
       align-items: center;
       justify-content: center;
       gap: 10px;
-      transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-      overflow: hidden;
+      transition: all 0.3s ease;
       box-shadow: 0 4px 15px rgba(0,0,0,0.3);
-      backdrop-filter: blur(10px);
     }
 
-    .btn-batch { background: linear-gradient(135deg, rgba(16, 185, 129, 0.85), rgba(6, 182, 212, 0.85)); }
-    .btn-print-batch { background: linear-gradient(135deg, rgba(236, 72, 153, 0.85), rgba(139, 92, 246, 0.85)); }
-    .btn-print-front { background: linear-gradient(135deg, rgba(6, 182, 212, 0.75), rgba(139, 92, 246, 0.75)); }
-    .btn-download { background: linear-gradient(135deg, rgba(16, 185, 129, 0.75), rgba(6, 182, 212, 0.75)); }
-    .btn-clear { background: rgba(239, 68, 68, 0.3); border-color: rgba(239, 68, 68, 0.5); }
+    .btn-batch { background: linear-gradient(135deg, rgba(16, 185, 129, 0.9), rgba(6, 182, 212, 0.9)); }
+    .btn-print-batch { background: linear-gradient(135deg, rgba(236, 72, 153, 0.9), rgba(139, 92, 246, 0.9)); }
+    .btn-print-front { background: linear-gradient(135deg, rgba(6, 182, 212, 0.8), rgba(139, 92, 246, 0.8)); }
+    .btn-download { background: linear-gradient(135deg, rgba(16, 185, 129, 0.8), rgba(6, 182, 212, 0.8)); }
+    .btn-clear { background: rgba(239, 68, 68, 0.35); border-color: rgba(239, 68, 68, 0.6); }
 
     .btn-action:hover {
-      transform: translateY(-2px) scale(1.01);
+      transform: translateY(-2px);
       box-shadow: 0 8px 20px rgba(6, 182, 212, 0.4);
-      border-color: rgba(255, 255, 255, 0.4);
     }
 
-    .workspace {
-      display: flex;
-      flex-direction: column;
-      gap: 20px;
-    }
+    .workspace { display: flex; flex-direction: column; gap: 20px; }
 
     .search-filter-bar {
       background: var(--glass-bg);
       backdrop-filter: blur(16px);
-      -webkit-backdrop-filter: blur(16px);
       border: 1px solid var(--glass-border);
       border-radius: 20px;
       padding: 15px 20px;
@@ -251,7 +229,6 @@
       gap: 15px;
       align-items: center;
       justify-content: space-between;
-      box-shadow: 0 10px 30px rgba(0,0,0,0.4);
     }
 
     .search-input-group { flex: 1; min-width: 250px; }
@@ -265,39 +242,6 @@
       color: white;
       font-weight: 700;
       outline: none;
-      transition: all 0.3s;
-    }
-
-    .search-input:focus {
-      border-color: var(--primary-cyan);
-      box-shadow: 0 0 15px rgba(6, 182, 212, 0.3);
-    }
-
-    .level-tabs {
-      display: flex;
-      gap: 6px;
-      overflow-x: auto;
-      padding-bottom: 4px;
-    }
-
-    .tab-btn {
-      background: rgba(255, 255, 255, 0.08);
-      border: 1px solid var(--glass-border);
-      color: #cbd5e1;
-      padding: 6px 12px;
-      border-radius: 10px;
-      cursor: pointer;
-      font-weight: 700;
-      font-size: 0.8rem;
-      transition: all 0.3s;
-      white-space: nowrap;
-    }
-
-    .tab-btn.active, .tab-btn:hover {
-      background: var(--primary-cyan);
-      color: #030712;
-      border-color: var(--primary-cyan);
-      font-weight: 800;
     }
 
     .database-panel {
@@ -308,46 +252,19 @@
       padding: 20px;
     }
 
-    .db-header {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      margin-bottom: 15px;
-    }
-
-    .db-title {
-      font-size: 1.1rem;
-      font-weight: 800;
-      color: var(--primary-cyan);
-    }
+    .db-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 15px; }
+    .db-title { font-size: 1.05rem; font-weight: 800; color: var(--primary-cyan); }
 
     .db-table-container {
-      max-height: 250px;
+      max-height: 220px;
       overflow-y: auto;
       border-radius: 12px;
       border: 1px solid var(--glass-border);
     }
 
-    .db-table {
-      width: 100%;
-      border-collapse: collapse;
-      text-align: right;
-      font-size: 0.85rem;
-    }
-
-    .db-table th {
-      background: rgba(6, 182, 212, 0.2);
-      padding: 10px;
-      color: #fff;
-      position: sticky;
-      top: 0;
-    }
-
-    .db-table td {
-      padding: 10px;
-      border-bottom: 1px solid rgba(255,255,255,0.08);
-      color: #e2e8f0;
-    }
+    .db-table { width: 100%; border-collapse: collapse; text-align: right; font-size: 0.85rem; }
+    .db-table th { background: rgba(6, 182, 212, 0.2); padding: 10px; color: #fff; position: sticky; top: 0; }
+    .db-table td { padding: 10px; border-bottom: 1px solid rgba(255,255,255,0.08); color: #e2e8f0; }
 
     .btn-table-edit {
       background: rgba(6, 182, 212, 0.2);
@@ -357,12 +274,6 @@
       border-radius: 6px;
       cursor: pointer;
       font-weight: 700;
-      font-size: 0.75rem;
-      transition: all 0.2s;
-    }
-    .btn-table-edit:hover {
-      background: var(--primary-cyan);
-      color: #000;
     }
 
     .btn-table-delete {
@@ -373,32 +284,10 @@
       border-radius: 6px;
       cursor: pointer;
       font-weight: 700;
-      font-size: 0.75rem;
       margin-right: 4px;
-      transition: all 0.2s;
-    }
-    .btn-table-delete:hover {
-      background: #ef4444;
-      color: #fff;
     }
 
-    .status-tag {
-      display: inline-block;
-      padding: 2px 8px;
-      border-radius: 6px;
-      font-size: 0.75rem;
-      font-weight: 700;
-    }
-
-    .status-printed { background: rgba(16, 185, 129, 0.2); color: #34d399; }
-    .status-saved { background: rgba(245, 158, 11, 0.2); color: #fbbf24; }
-
-    .cards-grid {
-      display: flex;
-      flex-direction: column;
-      gap: 40px;
-      align-items: center;
-    }
+    .cards-grid { display: flex; flex-direction: column; gap: 30px; align-items: center; }
 
     .card-box {
       display: flex;
@@ -407,7 +296,6 @@
       justify-content: center;
       align-items: center;
       gap: 20px;
-      position: relative;
       background: rgba(255,255,255,0.02);
       padding: 20px;
       border-radius: 20px;
@@ -424,35 +312,43 @@
       border-bottom: 1px solid rgba(255,255,255,0.1);
     }
 
-    .card-title-side {
-      font-weight: 800;
-      color: var(--primary-cyan);
-      font-size: 0.95rem;
-    }
-
     .card-wrapper {
       position: relative;
-      width: 500px;
-      height: 315px;
-      border-radius: 18px;
+      width: 480px;
+      height: 300px;
+      border-radius: 16px;
       overflow: hidden;
-      box-shadow: 0 20px 50px rgba(0,0,0,0.9);
+      box-shadow: 0 15px 35px rgba(0,0,0,0.8);
       border: 1px solid rgba(255,255,255,0.25);
-      background: #000;
+      background: #0f172a;
     }
 
     .card-template-img {
       position: absolute;
       top: 0; left: 0;
       width: 100%; height: 100%;
-      object-fit: fill;
+      object-fit: cover;
       z-index: 1;
+    }
+
+    /* 🎨 تصميم إفتراضي جميل لظهر البطاقة عند غياب الصورة المحليه */
+    .card-back-default {
+      position: absolute;
+      top: 0; left: 0;
+      width: 100%; height: 100%;
+      background: linear-gradient(135deg, #0f172a 0%, #1e1b4b 50%, #030712 100%);
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      z-index: 1;
+      border: 2px solid var(--primary-cyan);
     }
 
     .student-photo {
       position: absolute;
-      top: 132px; left: 31px;
-      width: 112px; height: 122px;
+      top: 125px; left: 30px;
+      width: 108px; height: 116px;
       object-fit: cover;
       border-radius: 4px;
       z-index: 2;
@@ -462,46 +358,24 @@
       position: absolute;
       font-weight: 900 !important;
       color: #000;
-      font-size: 13.5px;
+      font-size: 13px;
       font-family: 'Poppins', sans-serif;
       white-space: nowrap;
       z-index: 3;
     }
 
-    .valName   { top: 115px; left: 245px; }
-    .valLevel  { top: 172px; left: 245px; } 
-    .valId     { top: 201px; left: 245px; } 
-    .valExpire { top: 258px; left: 245px; }
+    .valName   { top: 110px; left: 235px; }
+    .valLevel  { top: 164px; left: 235px; } 
+    .valId     { top: 192px; left: 235px; } 
+    .valExpire { top: 246px; left: 235px; }
 
-    /* 🖨️ الطباعة المجمعة للوجه والظهر */
     @media print {
       * { -webkit-print-color-adjust: exact !important; print-color-adjust: exact !important; }
-      body { background: white !important; padding: 0 !important; color: black !important; }
+      body { background: white !important; color: black !important; padding: 0 !important; }
       body * { visibility: hidden; }
-
       .cards-grid, .cards-grid * { visibility: visible; }
-      .cards-grid {
-        position: absolute;
-        top: 0; left: 0;
-        width: 100%;
-        display: block !important;
-      }
-
-      .card-box {
-        page-break-after: always;
-        break-after: page;
-        margin-bottom: 20px;
-        display: flex !important;
-        justify-content: center;
-        border: none !important;
-        background: transparent !important;
-      }
-
-      .card-wrapper {
-        box-shadow: none !important;
-        border: 1px solid #ccc !important;
-      }
-
+      .cards-grid { position: absolute; top: 0; left: 0; width: 100%; }
+      .card-box { page-break-after: always; break-after: page; border: none !important; background: transparent !important; }
       header, .control-panel, .search-filter-bar, .database-panel, .bg-pattern, .glowing-orb, .card-header-bar { display: none !important; }
     }
   </style>
@@ -511,13 +385,12 @@
   <div class="bg-pattern"></div>
   <div class="glowing-orb orb-1"></div>
   <div class="glowing-orb orb-2"></div>
-  <div class="glowing-orb orb-3"></div>
 
   <header>
     <div class="header-content">
-      <img src="Untitled design_2.png" alt="Logo" class="header-logo" onerror="this.src='https://via.placeholder.com/140?text=EL+OULA'">
+      <img src="Untitled design_2.png" alt="Logo" class="header-logo" onerror="this.style.display='none'">
       <div class="site-title">EL OULA SCHOOL</div>
-      <div class="site-subtitle">إدارة وتعديل وطباعة البطاقات الذكية الوجه والظهر بكل سهولة</div>
+      <div class="site-subtitle">نظام إدراج وتعديل وطباعة بطاقات الطلاب الذكية</div>
     </div>
   </header>
 
@@ -526,23 +399,22 @@
     <div class="control-panel">
       
       <div class="panel-title">
-        <span>📂 رفع بيانات الدفعة (PDF / Excel)</span>
-        <span class="save-indicator" id="saveNotice">✔ تم حفظ البيانات</span>
+        <span>📂 رفع ملف دفعة (Excel / PDF)</span>
+        <span class="save-indicator" id="saveNotice">✔ تم الحفظ</span>
       </div>
 
       <div class="batch-upload-box">
         <label style="cursor:pointer; font-weight:800; color:var(--primary-cyan);">
-          📂 اضغط هنا لرفع ملف Excel (.xlsx/.csv) أو PDF
+          📂 اضغط هنا لرفع ملف Excel أو PDF
           <input type="file" id="batchFileInput" accept=".xlsx, .xls, .csv, .pdf" style="display:none;" onchange="handleBatchFileUpload(event)">
         </label>
-        <p>سيتم استخراج الأسماء والأرقام والمستويات وتنسيق الوجه والظهر تلقائياً!</p>
+        <p>يستخرج بيانات الطلاب تلقائياً إلى قاعدة البيانات</p>
       </div>
 
       <div class="panel-title">
-        <span id="formModeTitle">✏️ إضافة / تعديل بطاقة طالب</span>
+        <span id="formModeTitle">✏️ إضافة / تعديل بطاقة</span>
       </div>
 
-      <!-- المعرف الخفي للبطاقة الجاري تعديلها -->
       <input type="hidden" id="editingId" value="">
 
       <div class="form-group">
@@ -553,23 +425,20 @@
       <div class="form-group">
         <label>المستوى الدراسي</label>
         <select id="inputLevel" onchange="livePreviewSingleCard()">
-          <!-- 🏫 الطور الابتدائي -->
-          <optgroup label="الطور الابتدائي (PRIMARY SCHOOL)">
+          <optgroup label="الطور الابتدائي">
             <option value="1ST PRIMARY SCHOOL (1AP)">1AP - السنة الأولى ابتدائي</option>
             <option value="2ND PRIMARY SCHOOL (2AP)">2AP - السنة الثانية ابتدائي</option>
             <option value="3RD PRIMARY SCHOOL (3AP)">3AP - السنة الثالثة ابتدائي</option>
             <option value="4TH PRIMARY SCHOOL (4AP)">4AP - السنة الرابعة ابتدائي</option>
             <option value="5TH PRIMARY SCHOOL (5AP)">5AP - السنة الخامسة ابتدائي</option>
           </optgroup>
-          <!-- 🏫 الطور المتوسط -->
-          <optgroup label="الطور المتوسط (MIDDLE SCHOOL)">
+          <optgroup label="الطور المتوسط">
             <option value="1ST MIDDLE SCHOOL (1AM)">1AM - السنة الأولى متوسط</option>
             <option value="2ND MIDDLE SCHOOL (2AM)">2AM - السنة الثانية متوسط</option>
-            <option value="3RD MIDDLE SCHOOL (3AM)">3RD MIDDLE SCHOOL (3AM) - السنة الثالثة متوسط</option>
+            <option value="3RD MIDDLE SCHOOL (3AM)">3AM - السنة الثالثة متوسط</option>
             <option value="4TH MIDDLE SCHOOL (4AM)">4AM - السنة الرابعة متوسط</option>
           </optgroup>
-          <!-- 🏫 الطور الثانوي -->
-          <optgroup label="الطور الثانوي (HIGH SCHOOL)">
+          <optgroup label="الطور الثانوي">
             <option value="1ST HIGH SCHOOL (1AS)" selected>1AS - السنة الأولى ثانوي</option>
             <option value="2ND HIGH SCHOOL (2AS)">2AS - السنة الثانية ثانوي</option>
             <option value="3RD HIGH SCHOOL (3AS)">3AS - السنة الثالثة ثانوي</option>
@@ -578,7 +447,7 @@
       </div>
 
       <div class="form-group">
-        <label>الرقم التعريفي / الباركود (ID / Barcode)</label>
+        <label>الرقم التعريفي (ID)</label>
         <input type="text" id="inputId" value="2026-0089" oninput="livePreviewSingleCard()">
       </div>
 
@@ -588,24 +457,25 @@
       </div>
 
       <div class="form-group">
-        <label>الصورة الشخصية (تحديث / اختيار صورة)</label>
+        <label>الصورة الشخصية</label>
         <input type="file" id="inputPhoto" accept="image/*" onchange="previewPhoto(event)">
       </div>
 
+      <!-- 🛠️ الخانات والأزرار المعالجة بشكل كامل -->
       <div class="action-section">
-        <button class="btn-action btn-batch" onclick="saveCurrentToDb()">
+        <button type="button" class="btn-action btn-batch" onclick="saveCurrentToDb()">
           <span id="btnSaveText">💾 حفظ البطاقة / التعديلات</span>
         </button>
-        <button class="btn-action btn-print-batch" onclick="printAllBatch()">
+        <button type="button" class="btn-action btn-print-batch" onclick="printAllBatch()">
           <span>🖨️</span> طباعة كل البطاقات (وجه + ظهر)
         </button>
-        <button class="btn-action btn-print-front" onclick="window.print()">
+        <button type="button" class="btn-action btn-print-front" onclick="window.print()">
           <span>🖨️</span> طباعة المعاينة الحالية
         </button>
-        <button class="btn-action btn-download" onclick="downloadCurrentCard()">
+        <button type="button" class="btn-action btn-download" onclick="downloadCurrentCard()">
           <span>📥</span> تنزيل البطاقة الحالية (PNG)
         </button>
-        <button class="btn-action btn-clear" onclick="clearDatabase()">
+        <button type="button" class="btn-action btn-clear" onclick="clearDatabase()">
           <span>🗑️</span> مسح كافة البيانات والبطاقات
         </button>
       </div>
@@ -616,20 +486,14 @@
       
       <div class="search-filter-bar">
         <div class="search-input-group">
-          <input type="text" class="search-input" id="searchBox" placeholder="🔍 البحث بـ ID الطالب أو الاسم..." onkeyup="filterCardsAndDb()">
-        </div>
-        <div class="level-tabs">
-          <button class="tab-btn active" onclick="filterLevel('ALL', this)">الكل</button>
-          <button class="tab-btn" onclick="filterLevel('PRIMARY', this)">الابتدائي</button>
-          <button class="tab-btn" onclick="filterLevel('MIDDLE', this)">المتوسط</button>
-          <button class="tab-btn" onclick="filterLevel('HIGH', this)">الثانوي</button>
+          <input type="text" class="search-input" id="searchBox" placeholder="🔍 البحث بـ ID أو الاسم..." onkeyup="filterCardsAndDb()">
         </div>
       </div>
 
-      <!-- 🗄️ قاعدة البيانات المدمجة للطلاب -->
+      <!-- 🗄️ قاعدة البيانات -->
       <div class="database-panel">
         <div class="db-header">
-          <div class="db-title">📊 قاعدة البيانات المسجلة وخيارات التعديل المباشر</div>
+          <div class="db-title">📊 البطاقات المسجلة</div>
           <div id="dbCount" style="font-size:0.85rem; color:#94a3b8;">إجمالي المسجلين: 0</div>
         </div>
         <div class="db-table-container">
@@ -641,21 +505,16 @@
                 <th>الرقم التعريفي</th>
                 <th>المستوى الدراسي</th>
                 <th>تاريخ الانتهاء</th>
-                <th>الحالة</th>
-                <th>الإجراءات والتعديل</th>
+                <th>الإجراءات</th>
               </tr>
             </thead>
-            <tbody id="dbTableBody">
-              <!-- سيتم ملؤه بواسطة JavaScript -->
-            </tbody>
+            <tbody id="dbTableBody"></tbody>
           </table>
         </div>
       </div>
 
-      <!-- شبكة عرض البطاقات المولدّة تلقائياً (الوجه والظهر) -->
-      <div class="cards-grid" id="cardsGrid">
-        <!-- يتم توليد البطاقات والظهر هنا -->
-      </div>
+      <!-- شبكة عرض البطاقات -->
+      <div class="cards-grid" id="cardsGrid"></div>
 
     </div>
 
@@ -664,7 +523,9 @@
   <script>
     let database = [];
     let currentPhotoBase64 = '';
-    let selectedLevelFilter = 'ALL';
+
+    // صورةSVG خلفية افتراضية لظهر البطاقة لتفادي ظهور مربع أسود عند غياب صورة الظهر 2_1.png
+    const defaultBackSVG = `data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="480" height="300" viewBox="0 0 480 300"><rect width="480" height="300" fill="%230f172a"/><path d="0 0 L480 300 L0 300 Z" fill="%231e1b4b" opacity="0.5"/><circle cx="240" cy="150" r="80" fill="none" stroke="%2306b6d4" stroke-width="2" opacity="0.3"/><text x="50%" y="45%" dominant-baseline="middle" text-anchor="middle" fill="%2306b6d4" font-size="20" font-family="sans-serif" font-weight="bold">EL OULA SCHOOL</text><text x="50%" y="60%" dominant-baseline="middle" text-anchor="middle" fill="%23ffffff" font-size="12" font-family="sans-serif">SMART STUDENT CARD - BACK VIEW</text></svg>`;
 
     window.addEventListener('DOMContentLoaded', () => {
       pdfjsLib.GlobalWorkerOptions.workerSrc = 'https://cdnjs.cloudflare.com/ajax/libs/pdf.js/2.16.105/pdf.worker.min.js';
@@ -678,7 +539,6 @@
           level: "1ST HIGH SCHOOL (1AS)",
           id: "2026-0089",
           expire: "06 / 2027",
-          printed: false,
           photo: ""
         }];
       }
@@ -699,10 +559,7 @@
 
       let count = 0;
       database.forEach((item, index) => {
-        const matchesLevel = checkLevelMatch(item.level, selectedLevelFilter);
-        const matchesSearch = item.name.toLowerCase().includes(searchVal) || item.id.toLowerCase().includes(searchVal);
-
-        if (matchesLevel && matchesSearch) {
+        if (item.name.toLowerCase().includes(searchVal) || item.id.toLowerCase().includes(searchVal)) {
           count++;
           const tr = document.createElement('tr');
           tr.innerHTML = `
@@ -711,7 +568,6 @@
             <td>${item.id}</td>
             <td>${item.level}</td>
             <td>${item.expire}</td>
-            <td><span class="status-tag ${item.printed ? 'status-printed' : 'status-saved'}">${item.printed ? 'مطبوعة ✔' : 'مسجلة 💾'}</span></td>
             <td>
               <button class="btn-table-edit" onclick="editStudent('${item.id}')">✏️ تعديل</button>
               <button class="btn-table-delete" onclick="deleteStudent('${item.id}')">🗑️ حذف</button>
@@ -721,15 +577,7 @@
         }
       });
 
-      document.getElementById('dbCount').innerText = `إجمالي المسجلين: ${count} من أصل ${database.length}`;
-    }
-
-    function checkLevelMatch(itemLevel, filterKey) {
-      if (filterKey === 'ALL') return true;
-      if (filterKey === 'PRIMARY' && (itemLevel.includes('PRIMARY') || itemLevel.includes('AP'))) return true;
-      if (filterKey === 'MIDDLE' && (itemLevel.includes('MIDDLE') || itemLevel.includes('AM'))) return true;
-      if (filterKey === 'HIGH' && (itemLevel.includes('HIGH') || itemLevel.includes('AS'))) return true;
-      return itemLevel.includes(filterKey);
+      document.getElementById('dbCount').innerText = `إجمالي المسجلين: ${count}`;
     }
 
     function renderCardsGrid() {
@@ -738,25 +586,19 @@
       grid.innerHTML = '';
 
       database.forEach((item, idx) => {
-        const matchesLevel = checkLevelMatch(item.level, selectedLevelFilter);
-        const matchesSearch = item.name.toLowerCase().includes(searchVal) || item.id.toLowerCase().includes(searchVal);
-
-        if (matchesLevel && matchesSearch) {
+        if (item.name.toLowerCase().includes(searchVal) || item.id.toLowerCase().includes(searchVal)) {
           const cardBox = document.createElement('div');
           cardBox.className = 'card-box';
-          cardBox.dataset.level = item.level;
           
           cardBox.innerHTML = `
             <div class="card-header-bar">
-              <span class="card-title-side">بطاقة الطالب رقم #${idx + 1} (${item.name})</span>
-              <div>
-                <button class="btn-table-edit" onclick="editStudent('${item.id}')">✏️ تعديل هذه البطاقة</button>
-              </div>
+              <span style="color:var(--primary-cyan); font-weight:800;">بطاقة الطالب #${idx + 1}: ${item.name}</span>
+              <button class="btn-table-edit" onclick="editStudent('${item.id}')">✏️ تعديل</button>
             </div>
             
-            <!-- الوجه الأمامي للبطاقة -->
+            <!-- الوجه الأمامي -->
             <div class="card-wrapper" id="card-front-${idx}">
-              <img src="1_2.png" class="card-template-img" alt="Card Front" onerror="this.src='https://via.placeholder.com/500x315/0f172a/06b6d4?text=Card+Front+Template'">
+              <img src="1_2.png" class="card-template-img" alt="Card Front" onerror="this.src='https://via.placeholder.com/480x300/0f172a/06b6d4?text=Card+Front+Template'">
               ${item.photo ? `<img class="student-photo" src="${item.photo}">` : `<img class="student-photo" style="display:none;">`}
               <div class="field-overlay valName">${item.name}</div>
               <div class="field-overlay valLevel">${item.level}</div>
@@ -764,9 +606,9 @@
               <div class="field-overlay valExpire">${item.expire}</div>
             </div>
 
-            <!-- ظهر البطاقة -->
+            <!-- ظهر البطاقة المعالج مع قوالب احتياطية -->
             <div class="card-wrapper" id="card-back-${idx}">
-              <img src="2_1.png" class="card-template-img" alt="Card Back" onerror="this.src='https://via.placeholder.com/500x315/1e293b/8b5cf6?text=Card+Back+Template'">
+              <img src="2_1.png" class="card-template-img" alt="Card Back" onerror="this.src='${defaultBackSVG}'">
             </div>
           `;
           grid.appendChild(cardBox);
@@ -774,7 +616,6 @@
       });
     }
 
-    /* ✏️ وظيفة تعديل الطالب المسجل وتعبئة كافة معلوماته في نموذج الإدخال */
     function editStudent(studentId) {
       const student = database.find(s => s.id === studentId);
       if (!student) return;
@@ -787,15 +628,12 @@
       currentPhotoBase64 = student.photo || '';
 
       document.getElementById('formModeTitle').innerText = `✏️ تعديل بطاقة: ${student.name}`;
-      document.getElementById('btnSaveText').innerText = `💾 حفظ تعديلات البطاقة`;
-
-      // التمرير إلى أعلى النموذج بسلاسة
+      document.getElementById('btnSaveText').innerText = `💾 حفظ التعديلات`;
       window.scrollTo({ top: 0, behavior: 'smooth' });
     }
 
-    /* 🗑️ حذف طالب محدد */
     function deleteStudent(studentId) {
-      if (confirm(`هل أنت تأكد من حذف البطاقة ذات الرقم التعريفي ${studentId}؟`)) {
+      if (confirm(`تأكيد حذف الطالب صاحب الرقم ${studentId}؟`)) {
         database = database.filter(s => s.id !== studentId);
         saveDatabase();
       }
@@ -804,13 +642,13 @@
     function livePreviewSingleCard() {
       const editingId = document.getElementById('editingId').value;
       if (editingId) {
-        const studentIndex = database.findIndex(s => s.id === editingId);
-        if (studentIndex >= 0) {
-          database[studentIndex].name = document.getElementById('inputName').value.toUpperCase();
-          database[studentIndex].level = document.getElementById('inputLevel').value;
-          database[studentIndex].id = document.getElementById('inputId').value;
-          database[studentIndex].expire = document.getElementById('inputExpire').value;
-          if (currentPhotoBase64) database[studentIndex].photo = currentPhotoBase64;
+        const idx = database.findIndex(s => s.id === editingId);
+        if (idx >= 0) {
+          database[idx].name = document.getElementById('inputName').value.toUpperCase();
+          database[idx].level = document.getElementById('inputLevel').value;
+          database[idx].id = document.getElementById('inputId').value;
+          database[idx].expire = document.getElementById('inputExpire').value;
+          if (currentPhotoBase64) database[idx].photo = currentPhotoBase64;
           renderDatabaseTable();
           renderCardsGrid();
         }
@@ -829,41 +667,33 @@
       }
     }
 
+    /* 💾 حفظ البطاقة / التعديلات */
     function saveCurrentToDb() {
       const editingId = document.getElementById('editingId').value;
-      const name = document.getElementById('inputName').value.toUpperCase();
+      const name = document.getElementById('inputName').value.toUpperCase().trim();
       const level = document.getElementById('inputLevel').value;
-      const id = document.getElementById('inputId').value;
-      const expire = document.getElementById('inputExpire').value;
+      const id = document.getElementById('inputId').value.trim();
+      const expire = document.getElementById('inputExpire').value.trim();
 
       if (!name || !id) {
-        alert('يرجى ملء الاسم والرقم التعريفي');
+        alert('الرجاء إدخال الاسم والرقم التعريفي');
         return;
       }
 
       if (editingId) {
-        // تحديث سجل موجود
         const index = database.findIndex(s => s.id === editingId);
         if (index >= 0) {
-          database[index] = {
-            name,
-            level,
-            id,
-            expire,
-            photo: currentPhotoBase64 || database[index].photo,
-            printed: database[index].printed
-          };
+          database[index] = { name, level, id, expire, photo: currentPhotoBase64 || database[index].photo };
         }
         document.getElementById('editingId').value = '';
-        document.getElementById('formModeTitle').innerText = `✏️ إضافة / تعديل بطاقة طالب`;
+        document.getElementById('formModeTitle').innerText = `✏️ إضافة / تعديل بطاقة`;
         document.getElementById('btnSaveText').innerText = `💾 حفظ البطاقة / التعديلات`;
       } else {
-        // إضافة طالب جديد أو تحديث إن وجد الـ ID
         const existingIndex = database.findIndex(item => item.id === id);
         if (existingIndex >= 0) {
-          database[existingIndex] = { name, level, id, expire, photo: currentPhotoBase64 || database[existingIndex].photo, printed: false };
+          database[existingIndex] = { name, level, id, expire, photo: currentPhotoBase64 || database[existingIndex].photo };
         } else {
-          database.push({ name, level, id, expire, photo: currentPhotoBase64, printed: false });
+          database.push({ name, level, id, expire, photo: currentPhotoBase64 });
         }
       }
 
@@ -884,13 +714,12 @@
       if (!file) return;
 
       const fileName = file.name.toLowerCase();
-
       if (fileName.endsWith('.xlsx') || fileName.endsWith('.xls') || fileName.endsWith('.csv')) {
         parseExcel(file);
       } else if (fileName.endsWith('.pdf')) {
         parsePDF(file);
       } else {
-        alert('صيغة الملف غير مدعومة! يرجى اختيار Excel أو PDF');
+        alert('يرجى اختيار ملف Excel أو PDF صحيح');
       }
     }
 
@@ -907,37 +736,21 @@
           if (row && row.length >= 2) {
             const name = String(row[0] || '').trim().toUpperCase();
             const id = String(row[1] || '').trim();
-            const rawLevel = String(row[2] || '1ST HIGH SCHOOL (1AS)').trim().toUpperCase();
+            const level = String(row[2] || '1ST HIGH SCHOOL (1AS)').trim();
             const expire = String(row[3] || '06 / 2027').trim();
-
-            let level = '1ST HIGH SCHOOL (1AS)';
-            if (rawLevel.includes('1AP') || rawLevel.includes('اولى ابتدائي')) level = '1ST PRIMARY SCHOOL (1AP)';
-            else if (rawLevel.includes('2AP') || rawLevel.includes('ثانية ابتدائي')) level = '2ND PRIMARY SCHOOL (2AP)';
-            else if (rawLevel.includes('3AP') || rawLevel.includes('ثالثة ابتدائي')) level = '3RD PRIMARY SCHOOL (3AP)';
-            else if (rawLevel.includes('4AP') || rawLevel.includes('رابعة ابتدائي')) level = '4TH PRIMARY SCHOOL (4AP)';
-            else if (rawLevel.includes('5AP') || rawLevel.includes('خامسة ابتدائي')) level = '5TH PRIMARY SCHOOL (5AP)';
-            else if (rawLevel.includes('1AM') || rawLevel.includes('اولى متوسط')) level = '1ST MIDDLE SCHOOL (1AM)';
-            else if (rawLevel.includes('2AM') || rawLevel.includes('ثانية متوسط')) level = '2ND MIDDLE SCHOOL (2AM)';
-            else if (rawLevel.includes('3AM') || rawLevel.includes('ثالثة متوسط')) level = '3RD MIDDLE SCHOOL (3AM)';
-            else if (rawLevel.includes('4AM') || rawLevel.includes('رابعة متوسط')) level = '4TH MIDDLE SCHOOL (4AM)';
-            else if (rawLevel.includes('1AS') || rawLevel.includes('اولى ثانوي')) level = '1ST HIGH SCHOOL (1AS)';
-            else if (rawLevel.includes('2AS') || rawLevel.includes('ثانية ثانوي')) level = '2ND HIGH SCHOOL (2AS)';
-            else if (rawLevel.includes('3AS') || rawLevel.includes('ثالثة ثانوي')) level = '3RD HIGH SCHOOL (3AS)';
 
             if (name && id) {
               const existingIndex = database.findIndex(item => item.id === id);
               if (existingIndex >= 0) {
                 database[existingIndex].name = name;
-                database[existingIndex].level = level;
-                database[existingIndex].expire = expire;
               } else {
-                database.push({ name, level, id, expire, photo: '', printed: false });
+                database.push({ name, level, id, expire, photo: '' });
               }
             }
           }
         }
         saveDatabase();
-        alert('تم استخراج وقراءة ملف Excel وإنشاء الوجه والظهر لكافة الطلاب!');
+        alert('تم رفع واستخراج بيانات Excel بنجاح!');
       };
       reader.readAsArrayBuffer(file);
     }
@@ -960,21 +773,14 @@
                     if (parts.length >= 2) {
                       const id = parts.pop();
                       const name = parts.join(' ');
-                      database.push({
-                        name: name.toUpperCase(),
-                        level: '1ST HIGH SCHOOL (1AS)',
-                        id: id,
-                        expire: '06 / 2027',
-                        photo: '',
-                        printed: false
-                      });
+                      database.push({ name: name.toUpperCase(), level: '1ST HIGH SCHOOL (1AS)', id, expire: '06 / 2027', photo: '' });
                     }
                   });
                 }
                 count++;
                 if (count === maxPages) {
                   saveDatabase();
-                  alert('تمت قراءة ملف PDF واستخراج بيانات الطلاب بالكامل!');
+                  alert('تمت قراءة ملف PDF بنجاح!');
                 }
               });
             });
@@ -984,13 +790,12 @@
       reader.readAsArrayBuffer(file);
     }
 
+    /* 🖨️ طباعة كل البطاقات */
     function printAllBatch() {
       if (database.length === 0) {
-        alert('لا توجد بطاقات للطباعة!');
+        alert('لا توجد بطاقات للطباعة');
         return;
       }
-      database.forEach(item => { item.printed = true; });
-      saveDatabase();
       window.print();
     }
 
@@ -999,32 +804,31 @@
       renderCardsGrid();
     }
 
-    function filterLevel(levelKey, btnElement) {
-      selectedLevelFilter = levelKey;
-      const buttons = document.querySelectorAll('.tab-btn');
-      buttons.forEach(b => b.classList.remove('active'));
-      btnElement.classList.add('active');
-
-      renderDatabaseTable();
-      renderCardsGrid();
-    }
-
+    /* 📥 تنزيل البطاقة الحالية كصورة PNG */
     function downloadCurrentCard() {
       const cardFront = document.querySelector('.card-wrapper');
-      if (!cardFront) return;
+      if (!cardFront) {
+        alert('لا توجد بطاقة حالياً لتنزيلها');
+        return;
+      }
 
-      html2canvas(cardFront, { scale: 3, useCORS: true }).then(canvas => {
+      html2canvas(cardFront, { scale: 3, useCORS: true, allowTaint: true }).then(canvas => {
         const link = document.createElement('a');
         link.download = `Student_Card_${document.getElementById('inputId').value || 'ID'}.png`;
         link.href = canvas.toDataURL('image/png');
         link.click();
+      }).catch(err => {
+        alert('حدث خطأ أثناء تنزيل الصورة، يرجى المحاولة لاحقاً');
       });
     }
 
+    /* 🗑️ مسح كافة البيانات والبطاقات */
     function clearDatabase() {
-      if (confirm('هل أنت تأكد من مسح جميع البيانات والبطاقات من قاعدة البيانات؟')) {
+      if (confirm('هل أنت متأكد من مسح جميع البيانات والبطاقات من النظام؟')) {
         database = [];
         localStorage.removeItem('studentDatabase');
+        document.getElementById('inputName').value = '';
+        document.getElementById('inputId').value = '';
         renderDatabaseTable();
         renderCardsGrid();
       }
