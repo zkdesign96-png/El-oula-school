@@ -14,8 +14,9 @@
       --accent-purple: #8b5cf6;
       --accent-pink: #ec4899;
       --accent-green: #10b981;
-      --glass-bg: rgba(15, 23, 42, 0.75);
-      --glass-border: rgba(255, 255, 255, 0.15);
+      /* خلفية زجاجية شفافة تم تحسينها */
+      --glass-bg: rgba(15, 23, 42, 0.45);
+      --glass-border: rgba(255, 255, 255, 0.12);
     }
 
     * { box-sizing: border-box; margin: 0; padding: 0; font-family: 'Cairo', sans-serif; }
@@ -29,74 +30,107 @@
       overflow-x: hidden;
     }
 
-    /* 🌟 إصلاح وتفعيل الخلفية المضيئة المتحركة */
+    /* 🌟 الكرات والنقاط المضيئة المتحركة في الخلفية */
     .bg-pattern {
       position: fixed;
       top: 0; left: 0; width: 100vw; height: 100vh;
-      z-index: -2;
+      z-index: 0;
       background-color: #030712;
       background-image: 
-        radial-gradient(circle at 50% 50%, rgba(139, 92, 246, 0.12) 0%, transparent 70%),
-        radial-gradient(rgba(255, 255, 255, 0.07) 1px, transparent 1px);
-      background-size: 100% 100%, 30px 30px;
+        radial-gradient(circle at 50% 50%, rgba(139, 92, 246, 0.15) 0%, transparent 70%),
+        radial-gradient(rgba(255, 255, 255, 0.12) 1.5px, transparent 1.5px);
+      background-size: 100% 100%, 35px 35px;
+      pointer-events: none;
     }
 
     .glowing-orb {
       position: fixed;
       border-radius: 50%;
-      filter: blur(100px);
-      z-index: -1;
-      opacity: 0.6;
-      animation: floatGlow 10s infinite alternate ease-in-out;
+      filter: blur(80px);
+      z-index: 0;
+      opacity: 0.7;
       pointer-events: none;
+      animation: moveAndPulse 10s infinite alternate ease-in-out;
     }
 
-    .orb-1 { width: 500px; height: 500px; background: var(--accent-purple); top: -150px; right: -100px; }
-    .orb-2 { width: 550px; height: 550px; background: var(--primary-cyan); bottom: -150px; left: -100px; animation-delay: -5s; }
-
-    @keyframes floatGlow {
-      0% { transform: translate(0, 0) scale(0.9); opacity: 0.5; }
-      50% { opacity: 0.8; filter: blur(120px); }
-      100% { transform: translate(60px, 80px) scale(1.15); opacity: 0.6; }
+    .orb-1 {
+      width: 450px; height: 450px;
+      background: var(--accent-purple);
+      top: -100px; right: -50px;
     }
 
+    .orb-2 {
+      width: 500px; height: 500px;
+      background: var(--primary-cyan);
+      bottom: -100px; left: -50px;
+      animation-delay: -5s;
+    }
+
+    .orb-3 {
+      width: 300px; height: 300px;
+      background: var(--accent-pink);
+      top: 40%; left: 40%;
+      animation-duration: 14s;
+    }
+
+    @keyframes moveAndPulse {
+      0% { transform: translate(0, 0) scale(0.85); opacity: 0.4; }
+      50% { opacity: 0.8; filter: blur(100px); }
+      100% { transform: translate(80px, 60px) scale(1.2); opacity: 0.5; }
+    }
+
+    /* 🎯 توسيط اللوجو واسم الموقع بالمليمتر في منتصف الصفحة */
     header {
-      padding: 2rem 1rem 1rem 1rem;
       width: 100%;
+      padding: 2.5rem 1rem 1.5rem 1rem;
       display: flex;
       justify-content: center;
       align-items: center;
+      text-align: center;
+      position: relative;
+      z-index: 10;
     }
 
     .header-content {
       display: flex;
       flex-direction: column;
       align-items: center;
+      justify-content: center;
+      margin: 0 auto;
       text-align: center;
-      gap: 8px;
+      width: 100%;
+      max-width: 600px;
     }
 
     .header-logo {
-      width: 130px;
-      height: 130px;
+      width: 140px;
+      height: 140px;
       object-fit: contain;
-      filter: drop-shadow(0 0 25px rgba(6, 182, 212, 0.6));
+      filter: drop-shadow(0 0 25px rgba(6, 182, 212, 0.7));
+      margin-bottom: 10px;
+      display: block;
     }
 
     .site-title {
-      font-size: 2.2rem;
+      font-size: 2.5rem;
       font-weight: 900;
       color: #ffffff;
       font-family: 'Poppins', sans-serif;
       letter-spacing: 2px;
+      text-align: center;
+      width: 100%;
     }
 
     .site-subtitle {
-      font-size: 0.95rem;
+      font-size: 1rem;
       color: var(--primary-cyan);
       font-weight: 700;
+      text-align: center;
+      margin-top: 4px;
+      width: 100%;
     }
 
+    /* الهيكل الرئيسي وتصميم النوافذ الشفافة */
     .main-container {
       max-width: 1400px;
       margin: 20px auto;
@@ -104,18 +138,21 @@
       display: grid;
       grid-template-columns: 380px 1fr;
       gap: 30px;
+      position: relative;
+      z-index: 10;
     }
 
     @media (max-width: 1024px) { .main-container { grid-template-columns: 1fr; } }
 
+    /* 🪟 نافذة التحكم الشفافة الراقية */
     .control-panel {
       background: var(--glass-bg);
-      backdrop-filter: blur(20px);
-      -webkit-backdrop-filter: blur(20px);
+      backdrop-filter: blur(16px);
+      -webkit-backdrop-filter: blur(16px);
       border: 1px solid var(--glass-border);
       border-radius: 24px;
       padding: 25px;
-      box-shadow: 0 20px 40px rgba(0,0,0,0.6);
+      box-shadow: 0 20px 40px rgba(0,0,0,0.5);
     }
 
     .panel-title {
@@ -146,7 +183,7 @@
       width: 100%;
       padding: 10px 14px;
       border: 1px solid var(--glass-border);
-      background: rgba(15, 23, 42, 0.7);
+      background: rgba(15, 23, 42, 0.5);
       border-radius: 12px;
       font-size: 0.9rem;
       color: #fff;
@@ -183,26 +220,27 @@
       transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
       overflow: hidden;
       box-shadow: 0 4px 15px rgba(0,0,0,0.3);
+      backdrop-filter: blur(10px);
     }
 
     .btn-print-front {
-      background: linear-gradient(135deg, rgba(6, 182, 212, 0.8), rgba(139, 92, 246, 0.8));
+      background: linear-gradient(135deg, rgba(6, 182, 212, 0.75), rgba(139, 92, 246, 0.75));
     }
 
     .btn-print-back {
-      background: linear-gradient(135deg, rgba(139, 92, 246, 0.8), rgba(236, 72, 153, 0.8));
+      background: linear-gradient(135deg, rgba(139, 92, 246, 0.75), rgba(236, 72, 153, 0.75));
     }
 
     .btn-download {
-      background: linear-gradient(135deg, rgba(16, 185, 129, 0.8), rgba(6, 182, 212, 0.8));
+      background: linear-gradient(135deg, rgba(16, 185, 129, 0.75), rgba(6, 182, 212, 0.75));
     }
 
     .btn-whatsapp {
-      background: linear-gradient(135deg, rgba(37, 211, 102, 0.8), rgba(16, 185, 129, 0.8));
+      background: linear-gradient(135deg, rgba(37, 211, 102, 0.75), rgba(16, 185, 129, 0.75));
     }
 
     .btn-email {
-      background: linear-gradient(135deg, rgba(245, 158, 11, 0.8), rgba(217, 119, 6, 0.8));
+      background: linear-gradient(135deg, rgba(245, 158, 11, 0.75), rgba(217, 119, 6, 0.75));
     }
 
     .btn-action:hover {
@@ -211,21 +249,17 @@
       border-color: rgba(255, 255, 255, 0.4);
     }
 
-    .btn-action:active {
-      transform: translateY(0) scale(0.98);
-    }
-
     .workspace {
       display: flex;
       flex-direction: column;
       gap: 20px;
     }
 
-    /* 🔍 شريط البحث والتصفية حسب المستوى الدراسي والباركود */
+    /* 🪟 شريط البحث والتصفية بخصائص زجاجية شفافة */
     .search-filter-bar {
       background: var(--glass-bg);
-      backdrop-filter: blur(20px);
-      -webkit-backdrop-filter: blur(20px);
+      backdrop-filter: blur(16px);
+      -webkit-backdrop-filter: blur(16px);
       border: 1px solid var(--glass-border);
       border-radius: 20px;
       padding: 15px 20px;
@@ -240,13 +274,12 @@
     .search-input-group {
       flex: 1;
       min-width: 280px;
-      position: relative;
     }
 
     .search-input {
       width: 100%;
       padding: 10px 16px;
-      background: rgba(15, 23, 42, 0.8);
+      background: rgba(15, 23, 42, 0.5);
       border: 1px solid var(--glass-border);
       border-radius: 12px;
       color: white;
@@ -364,14 +397,16 @@
 </head>
 <body>
 
-  <!-- خلفية كرات مضيئة متحركة -->
+  <!-- نقاط ونقاط مضيئة متحركة تفاعلية -->
   <div class="bg-pattern"></div>
   <div class="glowing-orb orb-1"></div>
   <div class="glowing-orb orb-2"></div>
+  <div class="glowing-orb orb-3"></div>
 
+  <!-- الهيدر الموائم في المنتصف تماماً -->
   <header>
     <div class="header-content">
-      <img src="Untitled design_2.png" alt="Logo" class="header-logo" onerror="this.src='https://via.placeholder.com/130?text=EL+OULA'">
+      <img src="Untitled design_2.png" alt="Logo" class="header-logo" onerror="this.src='https://via.placeholder.com/140?text=EL+OULA'">
       <div class="site-title">EL OULA SCHOOL</div>
       <div class="site-subtitle">موقع إنشاء وطباعة بطاقات الطلاب الذكية</div>
     </div>
@@ -379,7 +414,7 @@
 
   <div class="main-container">
     
-    <!-- لوحة التحكم الإدارية -->
+    <!-- لوحة التحكم الشفافة -->
     <div class="control-panel">
       
       <div class="panel-title">
@@ -392,7 +427,6 @@
         <input type="text" id="inputName" value="MOHAMED BENALI" oninput="updateCardAndSave()">
       </div>
       
-      <!-- خانة المستوى الدراسي المطلوبة -->
       <div class="form-group">
         <label>المستوى الدراسي</label>
         <input type="text" id="inputLevel" value="2ND YEAR HIGH SCHOOL" oninput="updateCardAndSave()">
@@ -413,7 +447,7 @@
         <input type="file" id="inputPhoto" accept="image/*" onchange="previewPhoto(event)">
       </div>
 
-      <!-- أزرار العمليات الاحترافية -->
+      <!-- الأزرار الراقية الشفافة -->
       <div class="action-section">
         <button class="btn-action btn-print-front" onclick="printSide('front')">
           <span>🖨️</span> طباعة الوجه الأمامي
@@ -434,10 +468,9 @@
 
     </div>
 
-    <!-- منطقة التصفية ومعاينة البطاقات -->
+    <!-- منطقة المعاينة والبحث -->
     <div class="workspace">
       
-      <!-- شريط البحث السريع والباركود -->
       <div class="search-filter-bar">
         <div class="search-input-group">
           <input type="text" class="search-input" id="searchBox" placeholder="🔍 البحث بـ ID الطالب أو الباركود..." onkeyup="filterCard()">
@@ -477,7 +510,6 @@
   </div>
 
   <script>
-    // 1. تحديث النصوص والحفظ التلقائي في LocalStorage
     function updateCardAndSave() {
       const name = document.getElementById('inputName').value.toUpperCase() || 'MOHAMED BENALI';
       const level = document.getElementById('inputLevel').value.toUpperCase() || '2ND YEAR HIGH SCHOOL';
@@ -489,17 +521,14 @@
       document.getElementById('valId').innerText = id;
       document.getElementById('valExpire').innerText = expire;
 
-      // حفظ البيانات محلياً
       const studentData = { name, level, id, expire };
       localStorage.setItem('studentCardData', JSON.stringify(studentData));
 
-      // تفعيل مؤشر الحفظ التلقائي
       const notice = document.getElementById('saveNotice');
       notice.classList.add('active');
       setTimeout(() => notice.classList.remove('active'), 1500);
     }
 
-    // 2. معالجة معاينة وحفظ صورة الطالب
     function previewPhoto(event) {
       const file = event.target.files[0];
       if (file) {
@@ -515,7 +544,6 @@
       }
     }
 
-    // 3. استرجاع البيانات المحفوظة عند التشغيل
     window.addEventListener('DOMContentLoaded', () => {
       const savedData = localStorage.getItem('studentCardData');
       const savedPhoto = localStorage.getItem('studentCardPhoto');
@@ -537,7 +565,6 @@
       updateCardAndSave();
     });
 
-    // 4. دالة البحث بـ ID أو الباركود
     function filterCard() {
       const query = document.getElementById('searchBox').value.toLowerCase();
       const studentId = document.getElementById('valId').innerText.toLowerCase();
@@ -549,7 +576,6 @@
       }
     }
 
-    // 5. دالة تصفية المستوى الدراسي
     function filterLevel(levelKeyword) {
       const buttons = document.querySelectorAll('.tab-btn');
       buttons.forEach(btn => btn.classList.remove('active'));
@@ -563,7 +589,6 @@
       }
     }
 
-    // 6. الطباعة المستقلة لكل وجه
     function printSide(side) {
       document.body.classList.remove('print-front', 'print-back');
       if (side === 'front') {
@@ -574,7 +599,6 @@
       window.print();
     }
 
-    // 7. التنزيل كصورة عالية الجودة
     function downloadCardAsImage(elementId) {
       const cardElement = document.getElementById(elementId);
       const studentId = document.getElementById('inputId').value || 'ID';
@@ -587,7 +611,6 @@
       });
     }
 
-    // 8. مشاركة واتساب والبريد
     function shareWhatsApp() {
       const name = document.getElementById('inputName').value;
       const id = document.getElementById('inputId').value;
