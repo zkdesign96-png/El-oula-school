@@ -3,10 +3,13 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>EL OULA SCHOOL - Smart ID Portal</title>
+  <title>EL OULA SCHOOL - Smart ID Portal & Batch Generator</title>
   <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700;800;900&family=Poppins:wght@700;800;900&display=swap" rel="stylesheet">
   
+  <!-- Libraries -->
   <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.18.5/xlsx.full.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/2.16.105/pdf.min.js"></script>
 
   <style>
     :root {
@@ -14,8 +17,8 @@
       --accent-purple: #8b5cf6;
       --accent-pink: #ec4899;
       --accent-green: #10b981;
-      --glass-bg: rgba(15, 23, 42, 0.45);
-      --glass-border: rgba(255, 255, 255, 0.12);
+      --glass-bg: rgba(15, 23, 42, 0.55);
+      --glass-border: rgba(255, 255, 255, 0.15);
     }
 
     * { box-sizing: border-box; margin: 0; padding: 0; font-family: 'Cairo', sans-serif; }
@@ -118,7 +121,7 @@
       margin: 20px auto;
       padding: 0 20px;
       display: grid;
-      grid-template-columns: 380px 1fr;
+      grid-template-columns: 420px 1fr;
       gap: 30px;
       position: relative;
       z-index: 10;
@@ -160,11 +163,11 @@
 
     .form-group { margin-bottom: 14px; }
     .form-group label { display: block; font-size: 0.85rem; font-weight: 700; margin-bottom: 6px; color: #cbd5e1; }
-    .form-group input {
+    .form-group input, .form-group select {
       width: 100%;
       padding: 10px 14px;
       border: 1px solid var(--glass-border);
-      background: rgba(15, 23, 42, 0.5);
+      background: rgba(15, 23, 42, 0.6);
       border-radius: 12px;
       font-size: 0.9rem;
       color: #fff;
@@ -176,11 +179,26 @@
       box-shadow: 0 0 15px rgba(6, 182, 212, 0.4);
     }
 
+    .batch-upload-box {
+      border: 2px dashed var(--primary-cyan);
+      background: rgba(6, 182, 212, 0.08);
+      border-radius: 16px;
+      padding: 15px;
+      text-align: center;
+      margin-bottom: 18px;
+    }
+
+    .batch-upload-box p {
+      font-size: 0.82rem;
+      color: #94a3b8;
+      margin-top: 6px;
+    }
+
     .action-section {
-      margin-top: 20px;
+      margin-top: 15px;
       display: flex;
       flex-direction: column;
-      gap: 12px;
+      gap: 10px;
     }
 
     .btn-action {
@@ -203,15 +221,17 @@
       backdrop-filter: blur(10px);
     }
 
+    .btn-batch { background: linear-gradient(135deg, rgba(16, 185, 129, 0.85), rgba(6, 182, 212, 0.85)); }
+    .btn-print-batch { background: linear-gradient(135deg, rgba(236, 72, 153, 0.85), rgba(139, 92, 246, 0.85)); }
     .btn-print-front { background: linear-gradient(135deg, rgba(6, 182, 212, 0.75), rgba(139, 92, 246, 0.75)); }
     .btn-print-back { background: linear-gradient(135deg, rgba(139, 92, 246, 0.75), rgba(236, 72, 153, 0.75)); }
     .btn-download { background: linear-gradient(135deg, rgba(16, 185, 129, 0.75), rgba(6, 182, 212, 0.75)); }
     .btn-whatsapp { background: linear-gradient(135deg, rgba(37, 211, 102, 0.75), rgba(16, 185, 129, 0.75)); }
-    .btn-email { background: linear-gradient(135deg, rgba(245, 158, 11, 0.75), rgba(217, 119, 6, 0.75)); }
+    .btn-clear { background: rgba(239, 68, 68, 0.3); border-color: rgba(239, 68, 68, 0.5); }
 
     .btn-action:hover {
-      transform: translateY(-3px) scale(1.02);
-      box-shadow: 0 10px 25px rgba(6, 182, 212, 0.4);
+      transform: translateY(-2px) scale(1.01);
+      box-shadow: 0 8px 20px rgba(6, 182, 212, 0.4);
       border-color: rgba(255, 255, 255, 0.4);
     }
 
@@ -236,7 +256,7 @@
       box-shadow: 0 10px 30px rgba(0,0,0,0.4);
     }
 
-    .search-input-group { flex: 1; min-width: 280px; }
+    .search-input-group { flex: 1; min-width: 250px; }
 
     .search-input {
       width: 100%;
@@ -281,10 +301,71 @@
       font-weight: 800;
     }
 
+    /* قاعدة البيانات المدمجة */
+    .database-panel {
+      background: var(--glass-bg);
+      backdrop-filter: blur(16px);
+      border: 1px solid var(--glass-border);
+      border-radius: 20px;
+      padding: 20px;
+    }
+
+    .db-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 15px;
+    }
+
+    .db-title {
+      font-size: 1.1rem;
+      font-weight: 800;
+      color: var(--primary-cyan);
+    }
+
+    .db-table-container {
+      max-height: 250px;
+      overflow-y: auto;
+      border-radius: 12px;
+      border: 1px solid var(--glass-border);
+    }
+
+    .db-table {
+      width: 100%;
+      border-collapse: collapse;
+      text-align: right;
+      font-size: 0.85rem;
+    }
+
+    .db-table th {
+      background: rgba(6, 182, 212, 0.2);
+      padding: 10px;
+      color: #fff;
+      position: sticky;
+      top: 0;
+    }
+
+    .db-table td {
+      padding: 10px;
+      border-bottom: 1px solid rgba(255,255,255,0.08);
+      color: #e2e8f0;
+    }
+
+    .status-tag {
+      display: inline-block;
+      padding: 2px 8px;
+      border-radius: 6px;
+      font-size: 0.75rem;
+      font-weight: 700;
+    }
+
+    .status-printed { background: rgba(16, 185, 129, 0.2); color: #34d399; }
+    .status-saved { background: rgba(245, 158, 11, 0.2); color: #fbbf24; }
+
     .cards-grid {
       display: flex;
       flex-direction: column;
-      gap: 40px;
+      gap: 30px;
       align-items: center;
     }
 
@@ -293,6 +374,7 @@
       flex-direction: column;
       align-items: center;
       gap: 10px;
+      position: relative;
     }
 
     .card-wrapper {
@@ -333,26 +415,39 @@
       z-index: 3;
     }
 
-    #valName   { top: 115px; left: 245px; }
-    #valLevel  { top: 172px; left: 245px; } 
-    #valId     { top: 201px; left: 245px; } 
-    #valExpire { top: 258px; left: 245px; }
+    .valName   { top: 115px; left: 245px; }
+    .valLevel  { top: 172px; left: 245px; } 
+    .valId     { top: 201px; left: 245px; } 
+    .valExpire { top: 258px; left: 245px; }
 
+    /* 🖨️ الطباعة المجمعة الدقيقة */
     @media print {
       * { -webkit-print-color-adjust: exact !important; print-color-adjust: exact !important; }
-      body { background: none !important; padding: 0 !important; }
+      body { background: white !important; padding: 0 !important; color: black !important; }
       body * { visibility: hidden; }
 
-      body.print-front #frontCardBox, body.print-front #frontCardBox * { visibility: visible; }
-      body.print-front #frontCardBox { position: absolute; top: 0; left: 0; width: 100%; display: flex !important; justify-content: center; }
-      body.print-front #backCardBox { display: none !important; }
+      .cards-grid, .cards-grid * { visibility: visible; }
+      .cards-grid {
+        position: absolute;
+        top: 0; left: 0;
+        width: 100%;
+        display: block !important;
+      }
 
-      body.print-back #backCardBox, body.print-back #backCardBox * { visibility: visible; }
-      body.print-back #backCardBox { position: absolute; top: 0; left: 0; width: 100%; display: flex !important; justify-content: center; }
-      body.print-back #frontCardBox { display: none !important; }
+      .card-box {
+        page-break-after: always;
+        break-after: page;
+        margin-bottom: 20px;
+        display: flex !important;
+        justify-content: center;
+      }
 
-      .card-wrapper { box-shadow: none !important; border: none !important; transform: scale(1) !important; }
-      header, .control-panel, .search-filter-bar, .bg-pattern, .glowing-orb { display: none !important; }
+      .card-wrapper {
+        box-shadow: none !important;
+        border: 1px solid #ccc !important;
+      }
+
+      header, .control-panel, .search-filter-bar, .database-panel, .bg-pattern, .glowing-orb { display: none !important; }
     }
   </style>
 </head>
@@ -367,7 +462,7 @@
     <div class="header-content">
       <img src="Untitled design_2.png" alt="Logo" class="header-logo" onerror="this.src='https://via.placeholder.com/140?text=EL+OULA'">
       <div class="site-title">EL OULA SCHOOL</div>
-      <div class="site-subtitle">موقع إنشاء وطباعة بطاقات الطلاب الذكية</div>
+      <div class="site-subtitle">توليد وطباعة البطاقات الذكية تلقائياً من الملفات (PDF / Excel)</div>
     </div>
   </header>
 
@@ -376,29 +471,44 @@
     <div class="control-panel">
       
       <div class="panel-title">
-        <span>✏️ بيانات الطالب</span>
-        <span class="save-indicator" id="saveNotice">✔ تم الحفظ تلقائياً</span>
+        <span>📂 رفع بيانات الدفعة (PDF / Excel)</span>
+        <span class="save-indicator" id="saveNotice">✔ تم حفظ البيانات</span>
+      </div>
+
+      <div class="batch-upload-box">
+        <label style="cursor:pointer; font-weight:800; color:var(--primary-cyan);">
+          📂 اضغط هنا لرفع ملف Excel (.xlsx/.csv) أو PDF
+          <input type="file" id="batchFileInput" accept=".xlsx, .xls, .csv, .pdf" style="display:none;" onchange="handleBatchFileUpload(event)">
+        </label>
+        <p>سيتم استخراج الأسماء، الأرقام التعريفية، والمستويات وصناعة البطاقات دفعة واحدة!</p>
+      </div>
+
+      <div class="panel-title">
+        <span>✏️ إضافة / تعديل بطاقة واحدة</span>
       </div>
 
       <div class="form-group">
         <label>الاسم الكامل</label>
-        <input type="text" id="inputName" value="MOHAMED BENALI" oninput="updateCardAndSave()">
+        <input type="text" id="inputName" value="MOHAMED BENALI" oninput="updateSingleCard()">
       </div>
       
-      <!-- ضبط خيار السنة الأولى كافتراضي -->
       <div class="form-group">
         <label>المستوى الدراسي</label>
-        <input type="text" id="inputLevel" value="1ST YEAR HIGH SCHOOL" oninput="updateCardAndSave()">
+        <select id="inputLevel" onchange="updateSingleCard()">
+          <option value="1ST YEAR HIGH SCHOOL">1ST YEAR HIGH SCHOOL (السنة الأولى)</option>
+          <option value="2ND YEAR HIGH SCHOOL">2ND YEAR HIGH SCHOOL (السنة الثانية)</option>
+          <option value="3RD YEAR HIGH SCHOOL">3RD YEAR HIGH SCHOOL (السنة الثالثة)</option>
+        </select>
       </div>
 
       <div class="form-group">
         <label>الرقم التعريفي / الباركود (ID / Barcode)</label>
-        <input type="text" id="inputId" value="2026-0089" oninput="updateCardAndSave()">
+        <input type="text" id="inputId" value="2026-0089" oninput="updateSingleCard()">
       </div>
 
       <div class="form-group">
         <label>تاريخ الانتهاء</label>
-        <input type="text" id="inputExpire" value="06 / 2027" oninput="updateCardAndSave()">
+        <input type="text" id="inputExpire" value="06 / 2027" oninput="updateSingleCard()">
       </div>
 
       <div class="form-group">
@@ -407,20 +517,20 @@
       </div>
 
       <div class="action-section">
-        <button class="btn-action btn-print-front" onclick="printSide('front')">
-          <span>🖨️</span> طباعة الوجه الأمامي
+        <button class="btn-action btn-batch" onclick="saveCurrentToDb()">
+          <span>💾</span> حفظ البطاقة في قاعدة البيانات
         </button>
-        <button class="btn-action btn-print-back" onclick="printSide('back')">
-          <span>🖨️</span> طباعة ظهر البطاقة
+        <button class="btn-action btn-print-batch" onclick="printAllBatch()">
+          <span>🖨️</span> طباعة كافة البطاقات المنسقة دفعة واحدة
         </button>
-        <button class="btn-action btn-download" onclick="downloadCardAsImage('frontCard')">
-          <span>💾</span> تنزيل البطاقة (PNG)
+        <button class="btn-action btn-print-front" onclick="window.print()">
+          <span>🖨️</span> طباعة المعاينة الحالية
         </button>
-        <button class="btn-action btn-whatsapp" onclick="shareWhatsApp()">
-          <span>📱</span> مشاركة عبر واتساب
+        <button class="btn-action btn-download" onclick="downloadCurrentCard()">
+          <span>📥</span> تنزيل البطاقة الحالية (PNG)
         </button>
-        <button class="btn-action btn-email" onclick="shareEmail()">
-          <span>✉️</span> إرسال بالبريد الإلكتروني
+        <button class="btn-action btn-clear" onclick="clearDatabase()">
+          <span>🗑️</span> مسح قاعدة البيانات والبطاقات
         </button>
       </div>
 
@@ -430,59 +540,152 @@
       
       <div class="search-filter-bar">
         <div class="search-input-group">
-          <input type="text" class="search-input" id="searchBox" placeholder="🔍 البحث بـ ID الطالب أو الباركود..." onkeyup="filterCard()">
+          <input type="text" class="search-input" id="searchBox" placeholder="🔍 البحث بـ ID الطالب أو الاسم..." onkeyup="filterCardsAndDb()">
         </div>
-        <!-- ترتيب تبويبات السنوات لتكون الأولى في المقدمة -->
         <div class="level-tabs">
-          <button class="tab-btn active" onclick="filterLevel('ALL')">الكل</button>
-          <button class="tab-btn" onclick="filterLevel('1ST YEAR')">السنة الأولى</button>
-          <button class="tab-btn" onclick="filterLevel('2ND YEAR')">السنة الثانية</button>
-          <button class="tab-btn" onclick="filterLevel('3RD YEAR')">السنة الثالثة</button>
+          <button class="tab-btn active" onclick="filterLevel('ALL', this)">الكل</button>
+          <button class="tab-btn" onclick="filterLevel('1ST YEAR', this)">السنة الأولى</button>
+          <button class="tab-btn" onclick="filterLevel('2ND YEAR', this)">السنة الثانية</button>
+          <button class="tab-btn" onclick="filterLevel('3RD YEAR', this)">السنة الثالثة</button>
         </div>
       </div>
 
-      <div class="cards-grid">
-        
-        <div class="card-box" id="frontCardBox">
-          <div class="card-wrapper" id="frontCard">
-            <img src="1_2.png" class="card-template-img" alt="Card Front">
-            <img id="cardPhoto" class="student-photo" src="" style="display:none;">
-            <div class="field-overlay" id="valName">MOHAMED BENALI</div>
-            <div class="field-overlay" id="valLevel">1ST YEAR HIGH SCHOOL</div>
-            <div class="field-overlay" id="valId">2026-0089</div>
-            <div class="field-overlay" id="valExpire">06 / 2027</div>
-          </div>
+      <!-- 🗄️ قاعدة البيانات المدمجة للطلاب -->
+      <div class="database-panel">
+        <div class="db-header">
+          <div class="db-title">📊 قاعدة البيانات المسجلة والبطاقات المطبوعة</div>
+          <div id="dbCount" style="font-size:0.85rem; color:#94a3b8;">إجمالي المسجلين: 0</div>
         </div>
-
-        <div class="card-box" id="backCardBox">
-          <div class="card-wrapper" id="backCard">
-            <img src="2_2.png" class="card-template-img" alt="Card Back">
-          </div>
+        <div class="db-table-container">
+          <table class="db-table">
+            <thead>
+              <tr>
+                <th>#</th>
+                <th>الاسم الكامل</th>
+                <th>الرقم التعريفي</th>
+                <th>المستوى الدراسي</th>
+                <th>تاريخ الانتهاء</th>
+                <th>الحالة</th>
+              </tr>
+            </thead>
+            <tbody id="dbTableBody">
+              <!-- سيتم ملؤه بواسطة JavaScript -->
+            </tbody>
+          </table>
         </div>
-
       </div>
+
+      <!-- شبكة عرض البطاقات المولدّة تلقائياً -->
+      <div class="cards-grid" id="cardsGrid">
+        <!-- يتم توليد البطاقات هنا -->
+      </div>
+
     </div>
 
   </div>
 
   <script>
-    function updateCardAndSave() {
+    let database = [];
+    let currentPhotoBase64 = '';
+    let selectedLevelFilter = 'ALL';
+
+    window.addEventListener('DOMContentLoaded', () => {
+      pdfjsLib.GlobalWorkerOptions.workerSrc = 'https://cdnjs.cloudflare.com/ajax/libs/pdf.js/2.16.105/pdf.worker.min.js';
+      
+      const savedDb = localStorage.getItem('studentDatabase');
+      if (savedDb) {
+        database = JSON.parse(savedDb);
+      } else {
+        // افتراضي
+        database = [{
+          name: "MOHAMED BENALI",
+          level: "1ST YEAR HIGH SCHOOL",
+          id: "2026-0089",
+          expire: "06 / 2027",
+          printed: false,
+          photo: ""
+        }];
+      }
+      renderDatabaseTable();
+      renderCardsGrid();
+    });
+
+    function saveDatabase() {
+      localStorage.setItem('studentDatabase', JSON.stringify(database));
+      renderDatabaseTable();
+      renderCardsGrid();
+    }
+
+    function renderDatabaseTable() {
+      const tbody = document.getElementById('dbTableBody');
+      const searchVal = document.getElementById('searchBox').value.toLowerCase();
+      tbody.innerHTML = '';
+
+      let count = 0;
+      database.forEach((item, index) => {
+        const matchesLevel = selectedLevelFilter === 'ALL' || item.level.includes(selectedLevelFilter);
+        const matchesSearch = item.name.toLowerCase().includes(searchVal) || item.id.toLowerCase().includes(searchVal);
+
+        if (matchesLevel && matchesSearch) {
+          count++;
+          const tr = document.createElement('tr');
+          tr.innerHTML = `
+            <td>${index + 1}</td>
+            <td><strong>${item.name}</strong></td>
+            <td>${item.id}</td>
+            <td>${item.level}</td>
+            <td>${item.expire}</td>
+            <td><span class="status-tag ${item.printed ? 'status-printed' : 'status-saved'}">${item.printed ? 'مطبوعة ✔' : 'مسجلة 💾'}</span></td>
+          `;
+          tbody.appendChild(tr);
+        }
+      });
+
+      document.getElementById('dbCount').innerText = `إجمالي المسجلين المفدين: ${count} من أصل ${database.length}`;
+    }
+
+    function renderCardsGrid() {
+      const grid = document.getElementById('cardsGrid');
+      const searchVal = document.getElementById('searchBox').value.toLowerCase();
+      grid.innerHTML = '';
+
+      database.forEach((item, idx) => {
+        const matchesLevel = selectedLevelFilter === 'ALL' || item.level.includes(selectedLevelFilter);
+        const matchesSearch = item.name.toLowerCase().includes(searchVal) || item.id.toLowerCase().includes(searchVal);
+
+        if (matchesLevel && matchesSearch) {
+          const cardBox = document.createElement('div');
+          cardBox.className = 'card-box';
+          cardBox.dataset.level = item.level;
+          cardBox.innerHTML = `
+            <div class="card-wrapper" id="card-${idx}">
+              <img src="1_2.png" class="card-template-img" alt="Card Front" onerror="this.src='https://via.placeholder.com/500x315?text=Card+Front+Template'">
+              ${item.photo ? `<img class="student-photo" src="${item.photo}">` : `<img class="student-photo" style="display:none;">`}
+              <div class="field-overlay valName">${item.name}</div>
+              <div class="field-overlay valLevel">${item.level}</div>
+              <div class="field-overlay valId">${item.id}</div>
+              <div class="field-overlay valExpire">${item.expire}</div>
+            </div>
+          `;
+          grid.appendChild(cardBox);
+        }
+      });
+    }
+
+    function updateSingleCard() {
       const name = document.getElementById('inputName').value.toUpperCase() || 'MOHAMED BENALI';
-      const level = document.getElementById('inputLevel').value.toUpperCase() || '1ST YEAR HIGH SCHOOL';
+      const level = document.getElementById('inputLevel').value;
       const id = document.getElementById('inputId').value || '2026-0089';
       const expire = document.getElementById('inputExpire').value || '06 / 2027';
 
-      document.getElementById('valName').innerText = name;
-      document.getElementById('valLevel').innerText = level;
-      document.getElementById('valId').innerText = id;
-      document.getElementById('valExpire').innerText = expire;
-
-      const studentData = { name, level, id, expire };
-      localStorage.setItem('studentCardData', JSON.stringify(studentData));
-
-      const notice = document.getElementById('saveNotice');
-      notice.classList.add('active');
-      setTimeout(() => notice.classList.remove('active'), 1500);
+      if (database.length > 0) {
+        database[0].name = name;
+        database[0].level = level;
+        database[0].id = id;
+        database[0].expire = expire;
+        if (currentPhotoBase64) database[0].photo = currentPhotoBase64;
+        saveDatabase();
+      }
     }
 
     function previewPhoto(event) {
@@ -490,98 +693,184 @@
       if (file) {
         const reader = new FileReader();
         reader.onload = function(e) {
-          const img = document.getElementById('cardPhoto');
-          img.src = e.target.result;
-          img.style.display = 'block';
-          localStorage.setItem('studentCardPhoto', e.target.result);
-          updateCardAndSave();
-        }
+          currentPhotoBase64 = e.target.result;
+          updateSingleCard();
+        };
         reader.readAsDataURL(file);
       }
     }
 
-    window.addEventListener('DOMContentLoaded', () => {
-      const savedData = localStorage.getItem('studentCardData');
-      const savedPhoto = localStorage.getItem('studentCardPhoto');
+    function saveCurrentToDb() {
+      const name = document.getElementById('inputName').value.toUpperCase();
+      const level = document.getElementById('inputLevel').value;
+      const id = document.getElementById('inputId').value;
+      const expire = document.getElementById('inputExpire').value;
 
-      if (savedData) {
-        const data = JSON.parse(savedData);
-        document.getElementById('inputName').value = data.name || '';
-        document.getElementById('inputLevel').value = data.level || '';
-        document.getElementById('inputId').value = data.id || '';
-        document.getElementById('inputExpire').value = data.expire || '';
+      if (!name || !id) {
+        alert('يرجى ملء كافة البيانات الرئيسية قبل الحفظ');
+        return;
       }
 
-      if (savedPhoto) {
-        const img = document.getElementById('cardPhoto');
-        img.src = savedPhoto;
-        img.style.display = 'block';
-      }
-
-      updateCardAndSave();
-    });
-
-    function filterCard() {
-      const query = document.getElementById('searchBox').value.toLowerCase();
-      const studentId = document.getElementById('valId').innerText.toLowerCase();
-
-      if (studentId.includes(query) || query === '') {
-        document.querySelector('.cards-grid').style.opacity = '1';
+      const existingIndex = database.findIndex(item => item.id === id);
+      if (existingIndex >= 0) {
+        database[existingIndex] = { name, level, id, expire, photo: currentPhotoBase64 || database[existingIndex].photo, printed: false };
       } else {
-        document.querySelector('.cards-grid').style.opacity = '0.3';
+        database.push({ name, level, id, expire, photo: currentPhotoBase64, printed: false });
+      }
+
+      saveDatabase();
+      showSaveNotice();
+    }
+
+    function showSaveNotice() {
+      const notice = document.getElementById('saveNotice');
+      notice.classList.add('active');
+      setTimeout(() => notice.classList.remove('active'), 2000);
+    }
+
+    /* 📂 معالجة رفع ملفات Excel و PDF */
+    function handleBatchFileUpload(event) {
+      const file = event.target.files[0];
+      if (!file) return;
+
+      const fileName = file.name.toLowerCase();
+
+      if (fileName.endsWith('.xlsx') || fileName.endsWith('.xls') || fileName.endsWith('.csv')) {
+        parseExcel(file);
+      } else if (fileName.endsWith('.pdf')) {
+        parsePDF(file);
+      } else {
+        alert('صيغة الملف غير مدعومة! يرجى اختيار Excel أو PDF');
       }
     }
 
-    function filterLevel(levelKeyword) {
-      const buttons = document.querySelectorAll('.tab-btn');
-      buttons.forEach(btn => btn.classList.remove('active'));
-      event.target.classList.add('active');
+    function parseExcel(file) {
+      const reader = new FileReader();
+      reader.onload = function(e) {
+        const data = new Uint8Array(e.target.result);
+        const workbook = XLSX.read(data, { type: 'array' });
+        const firstSheet = workbook.Sheets[workbook.SheetNames[0]];
+        const jsonData = XLSX.utils.sheet_to_json(firstSheet, { header: 1 });
 
-      const currentLevel = document.getElementById('valLevel').innerText;
-      if (levelKeyword === 'ALL' || currentLevel.includes(levelKeyword)) {
-        document.querySelector('.cards-grid').style.opacity = '1';
-      } else {
-        document.querySelector('.cards-grid').style.opacity = '0.3';
-      }
+        // تخطي الهيدر والبدء في استخراج البيانات
+        for (let i = 1; i < jsonData.length; i++) {
+          const row = jsonData[i];
+          if (row && row.length >= 2) {
+            const name = String(row[0] || '').trim().toUpperCase();
+            const id = String(row[1] || '').trim();
+            const rawLevel = String(row[2] || '1ST YEAR HIGH SCHOOL').trim().toUpperCase();
+            const expire = String(row[3] || '06 / 2027').trim();
+
+            let level = '1ST YEAR HIGH SCHOOL';
+            if (rawLevel.includes('2') || rawLevel.includes('ثانية')) level = '2ND YEAR HIGH SCHOOL';
+            if (rawLevel.includes('3') || rawLevel.includes('ثالثة')) level = '3RD YEAR HIGH SCHOOL';
+
+            if (name && id) {
+              const existingIndex = database.findIndex(item => item.id === id);
+              if (existingIndex >= 0) {
+                database[existingIndex].name = name;
+                database[existingIndex].level = level;
+                database[existingIndex].expire = expire;
+              } else {
+                database.push({ name, level, id, expire, photo: '', printed: false });
+              }
+            }
+          }
+        }
+        saveDatabase();
+        alert('تم استخراج وقراءة ملف Excel وصناعة البطاقات وقاعدة البيانات بنجاح!');
+      };
+      reader.readAsArrayBuffer(file);
     }
 
-    function printSide(side) {
-      document.body.classList.remove('print-front', 'print-back');
-      if (side === 'front') {
-        document.body.classList.add('print-front');
-      } else if (side === 'back') {
-        document.body.classList.add('print-back');
+    function parsePDF(file) {
+      const reader = new FileReader();
+      reader.onload = function(e) {
+        const typedarray = new Uint8Array(e.target.result);
+        pdfjsLib.getDocument(typedarray).promise.then(pdf => {
+          let maxPages = pdf.numPages;
+          let count = 0;
+          for (let p = 1; p <= maxPages; p++) {
+            pdf.getPage(p).then(page => {
+              page.getTextContent().then(textContent => {
+                const text = textContent.items.map(item => item.str).join(' ');
+                // خوارزمية استخراج بسيطة للأسماء والأرقام
+                const matches = text.match(/([A-Z\s]{4,20})\s+(\d{4}-\d{4}|\d{5,10})/g);
+                if (matches) {
+                  matches.forEach(m => {
+                    const parts = m.trim().split(/\s+/);
+                    if (parts.length >= 2) {
+                      const id = parts.pop();
+                      const name = parts.join(' ');
+                      database.push({
+                        name: name.toUpperCase(),
+                        level: '1ST YEAR HIGH SCHOOL',
+                        id: id,
+                        expire: '06 / 2027',
+                        photo: '',
+                        printed: false
+                      });
+                    }
+                  });
+                }
+                count++;
+                if (count === maxPages) {
+                  saveDatabase();
+                  alert('تمت قراءة ملف PDF واستخراج بيانات الطلاب وإنشاء البطاقات وقاعدة البيانات!');
+                }
+              });
+            });
+          }
+        });
+      };
+      reader.readAsArrayBuffer(file);
+    }
+
+    /* 🖨️ طباعة كافة البطاقات وتحديث حالة قاعدة البيانات إلى "مطبوعة" */
+    function printAllBatch() {
+      if (database.length === 0) {
+        alert('لا توجد بطاقات للطباعة!');
+        return;
       }
+      database.forEach(item => { item.printed = true; });
+      saveDatabase();
       window.print();
     }
 
-    function downloadCardAsImage(elementId) {
-      const cardElement = document.getElementById(elementId);
-      const studentId = document.getElementById('inputId').value || 'ID';
+    function filterCardsAndDb() {
+      renderDatabaseTable();
+      renderCardsGrid();
+    }
+
+    function filterLevel(levelKey, btnElement) {
+      selectedLevelFilter = levelKey;
+      const buttons = document.querySelectorAll('.tab-btn');
+      buttons.forEach(b => b.classList.remove('active'));
+      btnElement.classList.add('active');
+
+      renderDatabaseTable();
+      renderCardsGrid();
+    }
+
+    function downloadCurrentCard() {
+      const cardElement = document.querySelector('.card-wrapper');
+      if (!cardElement) return;
 
       html2canvas(cardElement, { scale: 3, useCORS: true }).then(canvas => {
         const link = document.createElement('a');
-        link.download = `Student_ID_${studentId}.png`;
+        link.download = `Student_Card_${document.getElementById('inputId').value || 'ID'}.png`;
         link.href = canvas.toDataURL('image/png');
         link.click();
       });
     }
 
-    function shareWhatsApp() {
-      const name = document.getElementById('inputName').value;
-      const id = document.getElementById('inputId').value;
-      const level = document.getElementById('inputLevel').value;
-      const message = `*بطاقة طالب - EL OULA SCHOOL*%0A%0A*الاسم:* ${name}%0A*الرقم التعريفي:* ${id}%0A*المستوى:* ${level}`;
-      window.open(`https://api.whatsapp.com/send?text=${message}`, '_blank');
-    }
-
-    function shareEmail() {
-      const name = document.getElementById('inputName').value;
-      const id = document.getElementById('inputId').value;
-      const level = document.getElementById('inputLevel').value;
-      const subject = encodeURIComponent(`بطاقة طالب: ${name} (${id})`);
-      const body = encodeURIComponent(`بيانات بطاقة الطالب:\nالاسم: ${name}\nالرقم التعريفي: ${id}\nالمستوى الدراسي: ${level}`);
-      window.location.href = `mailto:?subject=${subject}&body=${body}`;
+    function clearDatabase() {
+      if (confirm('هل أنت تأكد من مسح جميع البيانات والبطاقات من قاعدة البيانات؟')) {
+        database = [];
+        localStorage.removeItem('studentDatabase');
+        renderDatabaseTable();
+        renderCardsGrid();
+      }
     }
   </script>
 
