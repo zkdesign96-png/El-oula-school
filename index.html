@@ -6,7 +6,6 @@
   <title>EL OULA SCHOOL - Smart ID Portal</title>
   <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700;800;900&family=Poppins:wght@700;800;900&display=swap" rel="stylesheet">
   
-  <!-- مكتبة html2canvas لتحويل HTML إلى صورة وحفظها على الجهاز -->
   <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
 
   <style>
@@ -15,8 +14,8 @@
       --accent-purple: #8b5cf6;
       --accent-pink: #ec4899;
       --accent-green: #10b981;
-      --glass-bg: rgba(15, 23, 42, 0.65);
-      --glass-border: rgba(255, 255, 255, 0.18);
+      --glass-bg: rgba(15, 23, 42, 0.75);
+      --glass-border: rgba(255, 255, 255, 0.15);
     }
 
     * { box-sizing: border-box; margin: 0; padding: 0; font-family: 'Cairo', sans-serif; }
@@ -30,37 +29,39 @@
       overflow-x: hidden;
     }
 
-    /* خلفية مزخرفة ومؤثرات ضوئية */
+    /* 🌟 إصلاح وتفعيل الخلفية المضيئة المتحركة */
     .bg-pattern {
       position: fixed;
       top: 0; left: 0; width: 100vw; height: 100vh;
       z-index: -2;
       background-color: #030712;
       background-image: 
-        radial-gradient(circle at 50% 50%, rgba(139, 92, 246, 0.15) 0%, transparent 60%),
-        radial-gradient(rgba(255, 255, 255, 0.08) 1px, transparent 1px);
+        radial-gradient(circle at 50% 50%, rgba(139, 92, 246, 0.12) 0%, transparent 70%),
+        radial-gradient(rgba(255, 255, 255, 0.07) 1px, transparent 1px);
       background-size: 100% 100%, 30px 30px;
     }
 
     .glowing-orb {
       position: fixed;
       border-radius: 50%;
-      filter: blur(90px);
+      filter: blur(100px);
       z-index: -1;
-      animation: pulseAndMove 8s infinite alternate ease-in-out;
+      opacity: 0.6;
+      animation: floatGlow 10s infinite alternate ease-in-out;
+      pointer-events: none;
     }
 
-    .orb-1 { width: 400px; height: 400px; background: var(--accent-purple); top: -100px; right: -50px; }
-    .orb-2 { width: 450px; height: 450px; background: var(--primary-cyan); bottom: -100px; left: -50px; animation-delay: -4s; }
+    .orb-1 { width: 500px; height: 500px; background: var(--accent-purple); top: -150px; right: -100px; }
+    .orb-2 { width: 550px; height: 550px; background: var(--primary-cyan); bottom: -150px; left: -100px; animation-delay: -5s; }
 
-    @keyframes pulseAndMove {
-      0% { transform: translate(0, 0) scale(0.8); opacity: 0.3; }
-      50% { opacity: 0.8; }
-      100% { transform: translate(40px, 50px) scale(1.2); opacity: 0.4; }
+    @keyframes floatGlow {
+      0% { transform: translate(0, 0) scale(0.9); opacity: 0.5; }
+      50% { opacity: 0.8; filter: blur(120px); }
+      100% { transform: translate(60px, 80px) scale(1.15); opacity: 0.6; }
     }
 
     header {
-      padding: 2.5rem 1rem 1rem 1rem;
+      padding: 2rem 1rem 1rem 1rem;
       width: 100%;
       display: flex;
       justify-content: center;
@@ -72,18 +73,18 @@
       flex-direction: column;
       align-items: center;
       text-align: center;
-      gap: 10px;
+      gap: 8px;
     }
 
     .header-logo {
-      width: 140px;
-      height: 140px;
+      width: 130px;
+      height: 130px;
       object-fit: contain;
-      filter: drop-shadow(0 0 20px rgba(6, 182, 212, 0.6));
+      filter: drop-shadow(0 0 25px rgba(6, 182, 212, 0.6));
     }
 
     .site-title {
-      font-size: 2.4rem;
+      font-size: 2.2rem;
       font-weight: 900;
       color: #ffffff;
       font-family: 'Poppins', sans-serif;
@@ -114,11 +115,11 @@
       border: 1px solid var(--glass-border);
       border-radius: 24px;
       padding: 25px;
-      box-shadow: 0 20px 40px rgba(0,0,0,0.5);
+      box-shadow: 0 20px 40px rgba(0,0,0,0.6);
     }
 
     .panel-title {
-      font-size: 1.1rem;
+      font-size: 1.05rem;
       font-weight: 800;
       margin-bottom: 18px;
       color: var(--primary-cyan);
@@ -139,7 +140,7 @@
 
     .save-indicator.active { opacity: 1; }
 
-    .form-group { margin-bottom: 15px; }
+    .form-group { margin-bottom: 14px; }
     .form-group label { display: block; font-size: 0.85rem; font-weight: 700; margin-bottom: 6px; color: #cbd5e1; }
     .form-group input {
       width: 100%;
@@ -157,19 +158,20 @@
       box-shadow: 0 0 15px rgba(6, 182, 212, 0.4);
     }
 
-    /* أزرار الإجراءات والتحكم */
+    /* 💎 تصميم الأزرار الاحترافي والراقي */
     .action-section {
-      margin-top: 15px;
+      margin-top: 20px;
       display: flex;
       flex-direction: column;
-      gap: 10px;
+      gap: 12px;
     }
 
     .btn-action {
+      position: relative;
       width: 100%;
-      padding: 11px;
-      border: none;
-      border-radius: 12px;
+      padding: 12px 18px;
+      border: 1px solid var(--glass-border);
+      border-radius: 14px;
       color: white;
       font-weight: 800;
       font-size: 0.9rem;
@@ -177,22 +179,111 @@
       display: flex;
       align-items: center;
       justify-content: center;
-      gap: 8px;
-      transition: all 0.3s;
+      gap: 10px;
+      transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+      overflow: hidden;
+      box-shadow: 0 4px 15px rgba(0,0,0,0.3);
     }
 
-    .btn-print-front { background: linear-gradient(135deg, var(--primary-cyan), var(--accent-purple)); }
-    .btn-print-back { background: linear-gradient(135deg, var(--accent-purple), var(--accent-pink)); }
-    .btn-download { background: linear-gradient(135deg, #2563eb, #1d4ed8); }
-    .btn-whatsapp { background: linear-gradient(135deg, #10b981, #059669); }
-    .btn-email { background: linear-gradient(135deg, #f59e0b, #d97706); }
+    .btn-print-front {
+      background: linear-gradient(135deg, rgba(6, 182, 212, 0.8), rgba(139, 92, 246, 0.8));
+    }
 
-    .btn-action:hover { transform: translateY(-2px); filter: brightness(1.1); }
+    .btn-print-back {
+      background: linear-gradient(135deg, rgba(139, 92, 246, 0.8), rgba(236, 72, 153, 0.8));
+    }
+
+    .btn-download {
+      background: linear-gradient(135deg, rgba(16, 185, 129, 0.8), rgba(6, 182, 212, 0.8));
+    }
+
+    .btn-whatsapp {
+      background: linear-gradient(135deg, rgba(37, 211, 102, 0.8), rgba(16, 185, 129, 0.8));
+    }
+
+    .btn-email {
+      background: linear-gradient(135deg, rgba(245, 158, 11, 0.8), rgba(217, 119, 6, 0.8));
+    }
+
+    .btn-action:hover {
+      transform: translateY(-3px) scale(1.02);
+      box-shadow: 0 10px 25px rgba(6, 182, 212, 0.4);
+      border-color: rgba(255, 255, 255, 0.4);
+    }
+
+    .btn-action:active {
+      transform: translateY(0) scale(0.98);
+    }
 
     .workspace {
       display: flex;
       flex-direction: column;
       gap: 20px;
+    }
+
+    /* 🔍 شريط البحث والتصفية حسب المستوى الدراسي والباركود */
+    .search-filter-bar {
+      background: var(--glass-bg);
+      backdrop-filter: blur(20px);
+      -webkit-backdrop-filter: blur(20px);
+      border: 1px solid var(--glass-border);
+      border-radius: 20px;
+      padding: 15px 20px;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 15px;
+      align-items: center;
+      justify-content: space-between;
+      box-shadow: 0 10px 30px rgba(0,0,0,0.4);
+    }
+
+    .search-input-group {
+      flex: 1;
+      min-width: 280px;
+      position: relative;
+    }
+
+    .search-input {
+      width: 100%;
+      padding: 10px 16px;
+      background: rgba(15, 23, 42, 0.8);
+      border: 1px solid var(--glass-border);
+      border-radius: 12px;
+      color: white;
+      font-weight: 700;
+      outline: none;
+      transition: all 0.3s;
+    }
+
+    .search-input:focus {
+      border-color: var(--primary-cyan);
+      box-shadow: 0 0 15px rgba(6, 182, 212, 0.3);
+    }
+
+    .level-tabs {
+      display: flex;
+      gap: 8px;
+      overflow-x: auto;
+    }
+
+    .tab-btn {
+      background: rgba(255, 255, 255, 0.08);
+      border: 1px solid var(--glass-border);
+      color: #cbd5e1;
+      padding: 8px 16px;
+      border-radius: 10px;
+      cursor: pointer;
+      font-weight: 700;
+      font-size: 0.85rem;
+      transition: all 0.3s;
+      white-space: nowrap;
+    }
+
+    .tab-btn.active, .tab-btn:hover {
+      background: var(--primary-cyan);
+      color: #030712;
+      border-color: var(--primary-cyan);
+      font-weight: 800;
     }
 
     .cards-grid {
@@ -252,7 +343,7 @@
     #valId     { top: 201px; left: 245px; } 
     #valExpire { top: 258px; left: 245px; }
 
-    /* 🖨️ إعدادات الطباعة للجهات المنفصلة */
+    /* 🖨️ طباعة كل جهة بشكل مستقل */
     @media print {
       * { -webkit-print-color-adjust: exact !important; print-color-adjust: exact !important; }
       body { background: none !important; padding: 0 !important; }
@@ -267,19 +358,20 @@
       body.print-back #frontCardBox { display: none !important; }
 
       .card-wrapper { box-shadow: none !important; border: none !important; transform: scale(1) !important; }
-      header, .control-panel, .zoom-controls, .bg-pattern, .glowing-orb { display: none !important; }
+      header, .control-panel, .search-filter-bar, .bg-pattern, .glowing-orb { display: none !important; }
     }
   </style>
 </head>
 <body>
 
+  <!-- خلفية كرات مضيئة متحركة -->
   <div class="bg-pattern"></div>
   <div class="glowing-orb orb-1"></div>
   <div class="glowing-orb orb-2"></div>
 
   <header>
     <div class="header-content">
-      <img src="Untitled design_2.png" alt="Logo" class="header-logo" onerror="this.src='https://via.placeholder.com/140?text=EL+OULA'">
+      <img src="Untitled design_2.png" alt="Logo" class="header-logo" onerror="this.src='https://via.placeholder.com/130?text=EL+OULA'">
       <div class="site-title">EL OULA SCHOOL</div>
       <div class="site-subtitle">موقع إنشاء وطباعة بطاقات الطلاب الذكية</div>
     </div>
@@ -287,6 +379,7 @@
 
   <div class="main-container">
     
+    <!-- لوحة التحكم الإدارية -->
     <div class="control-panel">
       
       <div class="panel-title">
@@ -298,35 +391,65 @@
         <label>الاسم الكامل</label>
         <input type="text" id="inputName" value="MOHAMED BENALI" oninput="updateCardAndSave()">
       </div>
+      
+      <!-- خانة المستوى الدراسي المطلوبة -->
       <div class="form-group">
         <label>المستوى الدراسي</label>
         <input type="text" id="inputLevel" value="2ND YEAR HIGH SCHOOL" oninput="updateCardAndSave()">
       </div>
+
       <div class="form-group">
-        <label>الرقم التعريفي (ID)</label>
+        <label>الرقم التعريفي / الباركود (ID / Barcode)</label>
         <input type="text" id="inputId" value="2026-0089" oninput="updateCardAndSave()">
       </div>
+
       <div class="form-group">
         <label>تاريخ الانتهاء</label>
         <input type="text" id="inputExpire" value="06 / 2027" oninput="updateCardAndSave()">
       </div>
+
       <div class="form-group">
         <label>الصورة الشخصية</label>
         <input type="file" id="inputPhoto" accept="image/*" onchange="previewPhoto(event)">
       </div>
 
-      <!-- أدوات الطباعة، التنزيل والمشاركة -->
+      <!-- أزرار العمليات الاحترافية -->
       <div class="action-section">
-        <button class="btn-action btn-print-front" onclick="printSide('front')">🖨️ طباعة الوجه الأمامي</button>
-        <button class="btn-action btn-print-back" onclick="printSide('back')">🖨️ طباعة ظهر البطاقة</button>
-        <button class="btn-action btn-download" onclick="downloadCardAsImage('frontCard')">💾 حفظ الوجه كصورة (PNG)</button>
-        <button class="btn-action btn-whatsapp" onclick="shareWhatsApp()">📱 إرسال التفاصيل عبر واتساب</button>
-        <button class="btn-action btn-email" onclick="shareEmail()">✉️ إرسال عبر البريد الإلكتروني</button>
+        <button class="btn-action btn-print-front" onclick="printSide('front')">
+          <span>🖨️</span> طباعة الوجه الأمامي
+        </button>
+        <button class="btn-action btn-print-back" onclick="printSide('back')">
+          <span>🖨️</span> طباعة ظهر البطاقة
+        </button>
+        <button class="btn-action btn-download" onclick="downloadCardAsImage('frontCard')">
+          <span>💾</span> تنزيل البطاقة (PNG)
+        </button>
+        <button class="btn-action btn-whatsapp" onclick="shareWhatsApp()">
+          <span>📱</span> مشاركة عبر واتساب
+        </button>
+        <button class="btn-action btn-email" onclick="shareEmail()">
+          <span>✉️</span> إرسال بالبريد الإلكتروني
+        </button>
       </div>
 
     </div>
 
+    <!-- منطقة التصفية ومعاينة البطاقات -->
     <div class="workspace">
+      
+      <!-- شريط البحث السريع والباركود -->
+      <div class="search-filter-bar">
+        <div class="search-input-group">
+          <input type="text" class="search-input" id="searchBox" placeholder="🔍 البحث بـ ID الطالب أو الباركود..." onkeyup="filterCard()">
+        </div>
+        <div class="level-tabs">
+          <button class="tab-btn active" onclick="filterLevel('ALL')">الكل</button>
+          <button class="tab-btn" onclick="filterLevel('1ST YEAR')">السنة الأولى</button>
+          <button class="tab-btn" onclick="filterLevel('2ND YEAR')">السنة الثانية</button>
+          <button class="tab-btn" onclick="filterLevel('3RD YEAR')">السنة الثالثة</button>
+        </div>
+      </div>
+
       <div class="cards-grid">
         
         <!-- الوجه الأمامي -->
@@ -341,7 +464,7 @@
           </div>
         </div>
 
-        <!-- الظهر -->
+        <!-- ظهر البطاقة -->
         <div class="card-box" id="backCardBox">
           <div class="card-wrapper" id="backCard">
             <img src="2_2.png" class="card-template-img" alt="Card Back">
@@ -354,7 +477,7 @@
   </div>
 
   <script>
-    // 1. تحديث البيانات والحفظ التلقائي في LocalStorage
+    // 1. تحديث النصوص والحفظ التلقائي في LocalStorage
     function updateCardAndSave() {
       const name = document.getElementById('inputName').value.toUpperCase() || 'MOHAMED BENALI';
       const level = document.getElementById('inputLevel').value.toUpperCase() || '2ND YEAR HIGH SCHOOL';
@@ -366,17 +489,17 @@
       document.getElementById('valId').innerText = id;
       document.getElementById('valExpire').innerText = expire;
 
-      // حفظ النص في الذاكرة
+      // حفظ البيانات محلياً
       const studentData = { name, level, id, expire };
       localStorage.setItem('studentCardData', JSON.stringify(studentData));
 
-      // إظهار تنبيه الحفظ التلقائي
+      // تفعيل مؤشر الحفظ التلقائي
       const notice = document.getElementById('saveNotice');
       notice.classList.add('active');
       setTimeout(() => notice.classList.remove('active'), 1500);
     }
 
-    // 2. معاينة الصورة وحفظها تلقائيًا
+    // 2. معالجة معاينة وحفظ صورة الطالب
     function previewPhoto(event) {
       const file = event.target.files[0];
       if (file) {
@@ -392,7 +515,7 @@
       }
     }
 
-    // 3. استرجاع البيانات المحفوظة عند فتح الصفحة
+    // 3. استرجاع البيانات المحفوظة عند التشغيل
     window.addEventListener('DOMContentLoaded', () => {
       const savedData = localStorage.getItem('studentCardData');
       const savedPhoto = localStorage.getItem('studentCardPhoto');
@@ -414,7 +537,33 @@
       updateCardAndSave();
     });
 
-    // 4. طباعة جهة واحدة فقط
+    // 4. دالة البحث بـ ID أو الباركود
+    function filterCard() {
+      const query = document.getElementById('searchBox').value.toLowerCase();
+      const studentId = document.getElementById('valId').innerText.toLowerCase();
+
+      if (studentId.includes(query) || query === '') {
+        document.querySelector('.cards-grid').style.opacity = '1';
+      } else {
+        document.querySelector('.cards-grid').style.opacity = '0.3';
+      }
+    }
+
+    // 5. دالة تصفية المستوى الدراسي
+    function filterLevel(levelKeyword) {
+      const buttons = document.querySelectorAll('.tab-btn');
+      buttons.forEach(btn => btn.classList.remove('active'));
+      event.target.classList.add('active');
+
+      const currentLevel = document.getElementById('valLevel').innerText;
+      if (levelKeyword === 'ALL' || currentLevel.includes(levelKeyword)) {
+        document.querySelector('.cards-grid').style.opacity = '1';
+      } else {
+        document.querySelector('.cards-grid').style.opacity = '0.3';
+      }
+    }
+
+    // 6. الطباعة المستقلة لكل وجه
     function printSide(side) {
       document.body.classList.remove('print-front', 'print-back');
       if (side === 'front') {
@@ -425,7 +574,7 @@
       window.print();
     }
 
-    // 5. تحميل البطاقة كصورة عالي الجودة على جهاز الكمبيوتر
+    // 7. التنزيل كصورة عالية الجودة
     function downloadCardAsImage(elementId) {
       const cardElement = document.getElementById(elementId);
       const studentId = document.getElementById('inputId').value || 'ID';
@@ -438,25 +587,21 @@
       });
     }
 
-    // 6. مشاركة تفاصيل الطالب عبر WhatsApp
+    // 8. مشاركة واتساب والبريد
     function shareWhatsApp() {
       const name = document.getElementById('inputName').value;
       const id = document.getElementById('inputId').value;
       const level = document.getElementById('inputLevel').value;
-
       const message = `*بطاقة طالب - EL OULA SCHOOL*%0A%0A*الاسم:* ${name}%0A*الرقم التعريفي:* ${id}%0A*المستوى:* ${level}`;
       window.open(`https://api.whatsapp.com/send?text=${message}`, '_blank');
     }
 
-    // 7. مشاركة تفاصيل الطالب عبر Email
     function shareEmail() {
       const name = document.getElementById('inputName').value;
       const id = document.getElementById('inputId').value;
       const level = document.getElementById('inputLevel').value;
-
       const subject = encodeURIComponent(`بطاقة طالب: ${name} (${id})`);
-      const body = encodeURIComponent(`بيانات بطاقة الطالب - مدرسة EL OULA SCHOOL:\n\nالاسم الكامل: ${name}\nالرقم التعريفي: ${id}\nالمستوى الدراسي: ${level}`);
-      
+      const body = encodeURIComponent(`بيانات بطاقة الطالب:\nالاسم: ${name}\nالرقم التعريفي: ${id}\nالمستوى الدراسي: ${level}`);
       window.location.href = `mailto:?subject=${subject}&body=${body}`;
     }
   </script>
