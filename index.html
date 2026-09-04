@@ -22,7 +22,7 @@
       padding-bottom: 40px;
     }
 
-    /* هيدر يحتوي على اللوجو واسم المنصة */
+    /* هيدر الموقع */
     header {
       background: rgba(255, 255, 255, 0.2);
       backdrop-filter: blur(12px);
@@ -36,10 +36,10 @@
     }
 
     .brand-container { display: flex; align-items: center; gap: 15px; }
-    .brand-logo { width: 50px; height: 50px; object-fit: contain; border-radius: 8px; background: rgba(255,255,255,0.8); padding: 2px; }
+    .brand-logo-svg { width: 50px; height: 50px; background: #ffffff; border-radius: 10px; padding: 5px; box-shadow: 0 2px 8px rgba(0,0,0,0.15); }
     .brand-text { display: flex; flex-direction: column; }
-    .site-title { font-size: 1.3rem; font-weight: 800; line-height: 1.2; text-shadow: 0 2px 4px rgba(0,0,0,0.2); }
-    .site-subtitle { font-size: 0.75rem; opacity: 0.9; font-weight: 600; }
+    .site-title { font-size: 1.4rem; font-weight: 800; line-height: 1.2; text-shadow: 0 2px 4px rgba(0,0,0,0.2); }
+    .site-subtitle { font-size: 0.8rem; opacity: 0.9; font-weight: 600; }
 
     .container {
       max-width: 1300px;
@@ -79,7 +79,7 @@
       width: 100%;
       padding: 10px 14px;
       border: 1px solid var(--glass-border);
-      background: rgba(255, 255, 255, 0.75);
+      background: rgba(255, 255, 255, 0.85);
       border-radius: 10px;
       font-size: 0.9rem;
       outline: none;
@@ -125,7 +125,6 @@
 
     /* الوجه الأمامي */
     .card-front .card-logo-area { position: absolute; top: 10px; left: 15px; width: 110px; text-align: center; }
-    .card-front .card-logo-area img { width: 100%; height: auto; }
 
     .card-front .card-title {
       position: absolute;
@@ -202,8 +201,6 @@
       text-align: center;
     }
 
-    .back-logo-img { width: 150px; margin-top: 5px; }
-    
     .contact-info {
       width: 100%;
       display: grid;
@@ -218,13 +215,17 @@
 </head>
 <body>
 
-  <!-- الهيدر مع اسم المنصة وشعارها -->
+  <!-- الهيدر مع اسم المنصة وشعار مدمج -->
   <header>
     <div class="brand-container">
-      <img id="headerLogoImg" src="Untitled design_2.png" alt="Logo" class="brand-logo" onerror="this.style.display='none'">
+      <div class="brand-logo-svg">
+        <svg viewBox="0 0 100 100" width="100%" height="100%">
+          <path d="M20 70 C30 50, 70 50, 80 70 M50 20 L50 60 M30 35 L70 35" stroke="#a855f7" stroke-width="8" fill="none" stroke-linecap="round"/>
+        </svg>
+      </div>
       <div class="brand-text">
         <div class="site-title">EL OULA SCHOOL</div>
-        <div class="site-subtitle">ECOLE DE LANGUES ET DE FORMATION - منصة بطاقات الطلاب</div>
+        <div class="site-subtitle">ECOLE DE LANGUES ET DE FORMATION</div>
       </div>
     </div>
   </header>
@@ -273,14 +274,15 @@
       <!-- الوجه الأمامي -->
       <div class="id-card card-front">
         <div class="card-logo-area">
-          <img src="Untitled design_2.png" alt="El Oula Logo">
+          <strong style="display:block; font-size:16px; color:#b45309; margin-bottom:-5px;">العلا</strong>
+          <span style="font-size:9px; font-weight:800; color:#000;">EL OULA SCHOOL</span>
         </div>
 
         <div class="card-title">STUDENT ID CARD</div>
 
         <div class="student-photo-box">
           <img id="cardPhoto" src="" alt="" style="display:none;">
-          <span id="photoPlaceholder" style="font-size:10px; color:#64748b;">الصورة</span>
+          <span id="photoPlaceholder" style="font-size:10px; color:#64748b;">اختر صورة</span>
         </div>
 
         <div class="fields-container">
@@ -296,8 +298,10 @@
 
       <!-- الظهر -->
       <div class="id-card card-back">
-        <div>
-          <img src="Untitled design_2.png" alt="El Oula Logo" class="back-logo-img">
+        <div style="text-align:center; margin-top:10px;">
+          <h2 style="color:#b45309; font-size:28px; line-height:1;">العلا</h2>
+          <strong style="font-size:14px; color:#000;">EL OULA SCHOOL</strong>
+          <p style="font-size:8px; color:#666;">ECOLE DE LANGUES ET DE FORMATION</p>
         </div>
 
         <div class="contact-info">
